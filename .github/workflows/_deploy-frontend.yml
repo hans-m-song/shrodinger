@@ -10,8 +10,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          show-progress: false
 
       - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
 
       - uses: axatol/actions/assume-aws-role@release
         with:
