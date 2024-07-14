@@ -14,3 +14,6 @@ jobs:
       publish: true
     secrets:
       AWS_ECR_IMAGE_PUBLISHER_ROLE_ARN: ${{ secrets.AWS_ECR_IMAGE_PUBLISHER_ROLE_ARN }}
+    permissions:
+      id-token: write
+      contents: read
