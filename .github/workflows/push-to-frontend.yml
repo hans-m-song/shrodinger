@@ -1,0 +1,27 @@
+name: Push to frontend
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - './kubernetes/**'
+      - './src/**'
+      - './test/**'
+
+  workflow_dispatch:
+
+jobs:
+  build-image:
+    uses: ./.github/workflows/_build-backend.yml
+    with:
+      publish: true
+    secrets:
+      AWS_ECR_IMAGE_PUBLISHER_ROLE_ARN: ${{ secrets.AWS_ECR_IMAGE_PUBLISHER_ROLE_ARN }}
+    permissions:
+      id-token: write
+      contents: read
+
+  deploy-backend:
+    needs: build-image
+    uses: ./.github/workflows/_deploy-backend.yml

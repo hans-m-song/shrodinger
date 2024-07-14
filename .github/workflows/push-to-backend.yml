@@ -1,9 +1,13 @@
-name: Push to master
+name: Push to backend
 
 on:
   push:
     branches:
       - master
+    paths-ignore:
+      - './cdk/**'
+      - './web/**'
+      - './test/**'
 
   workflow_dispatch:
 
