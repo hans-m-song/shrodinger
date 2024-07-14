@@ -6,6 +6,11 @@ export default {
     port: Joi.number().port().default(3000).validate(process.env.HTTP_PORT)
       .value,
   },
+  cors: {
+    allowedOrigins: Joi.array()
+      .items(Joi.string().uri())
+      .validate(process.env.CORS_ALLOWED_ORIGINS?.split(',')).value,
+  },
   database: {
     host: Joi.string()
       .default('database.db')

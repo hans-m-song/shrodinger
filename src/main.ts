@@ -7,6 +7,10 @@ import init from './config/init';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  if (init.cors.allowedOrigins) {
+    app.enableCors({ origin: init.cors.allowedOrigins });
+  }
+
   await app.listen(init.http.port);
 }
 bootstrap();
