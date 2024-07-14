@@ -1,0 +1,13 @@
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - uses: axatol/actions/rollout-kubernetes-deployment@release
+        with:
+          namespace: shrodinger
+          deployment-name: shrodinger-api

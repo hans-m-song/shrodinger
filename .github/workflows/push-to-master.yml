@@ -17,3 +17,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+
+  deploy-backend:
+    needs: build-image
+    uses: ./.github/workflows/_deploy-backend.yml
