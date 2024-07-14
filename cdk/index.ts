@@ -47,6 +47,11 @@ const cdn = new cf.Distribution(stack, 'Distribution', {
       responseHttpStatus: 200,
       responsePagePath: '/index.html',
     },
+    {
+      httpStatus: 403,
+      responseHttpStatus: 200,
+      responsePagePath: '/index.html',
+    },
   ],
 });
 
