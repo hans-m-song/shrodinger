@@ -4,6 +4,13 @@ on:
     secrets:
       AWS_CDK_DEPLOY_ROLE_ARN:
 
+env:
+  VITE_GIT_SHA: ${{ github.sha }}
+  VITE_API_URI: https://shrodinger-api.axatol.xyz/graphql
+  HOSTED_ZONE_ID: Z06906322LG6UMVSAT4VH
+  HOSTED_ZONE_NAME: cloud.axatol.xyz
+  SUBDOMAIN: shrodinger
+
 jobs:
   deploy:
     runs-on: self-hosted
@@ -26,9 +33,6 @@ jobs:
 
       - name: Build frontend
         run: npm --workspace web run build
-        env:
-          VITE_GIT_SHA: ${{ github.sha }}
-          VITE_API_URI: https://shrodinger-api.axatol.xyz/graphql
 
       - name: Compare
         run: npm --workspace cdk run diff
