@@ -6,6 +6,7 @@ import { ThemeProvider } from '@emotion/react';
 import theme from './theme.ts';
 
 const apiUri = import.meta.env.VITE_API_URI;
+console.log(import.meta.env.VITE_GIT_SHA);
 
 const client = new ApolloClient({ uri: apiUri, cache: new InMemoryCache() });
 

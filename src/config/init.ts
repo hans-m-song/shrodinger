@@ -2,6 +2,9 @@ import * as Joi from 'joi';
 import { Options } from 'sequelize';
 
 export default {
+  meta: {
+    sha: process.env.GIT_SHA,
+  },
   http: {
     port: Joi.number().port().default(3000).validate(process.env.HTTP_PORT)
       .value,
