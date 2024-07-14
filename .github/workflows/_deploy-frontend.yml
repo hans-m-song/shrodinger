@@ -1,0 +1,33 @@
+on:
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      AWS_CDK_DEPLOY_ROLE_ARN:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+
+      - uses: axatol/actions/assume-aws-role@release
+        with:
+          role-to-assume: ${{ secrets.AWS_CDK_DEPLOY_ROLE_ARN }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build frontend
+        run: npm --workspace web run build
+        env:
+          VITE_GIT_SHA: ${{ github.sha }}
+          VITE_API_URI: https://shrodinger-api.axatol.xyz/graphql
+
+      - name: Compare
+        run: npm --workspace cdk run diff
+
+      - name: Deploy
+        run: npm --workspace cdk run deploy:ci

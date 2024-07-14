@@ -21,3 +21,11 @@ jobs:
   deploy-backend:
     needs: build-image
     uses: ./.github/workflows/_deploy-backend.yml
+
+  deploy-frontend:
+    uses: ./.github/workflows/_deploy-frontend.yml
+    secrets:
+      AWS_CDK_DEPLOY_ROLE_ARN: ${{ secrets.AWS_CDK_DEPLOY_ROLE_ARN }}
+    permissions:
+      id-token: write
+      contents: read

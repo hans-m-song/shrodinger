@@ -1,0 +1,9 @@
+{
+  "app": "npx tsx index.ts",
+  "assetMetadata": false,
+  "pathMetadata": false,
+  "versionReporting": false,
+  "context": {
+    "@aws-cdk/core:bootstrapQualifier": "toolkit"
+  }
+}
