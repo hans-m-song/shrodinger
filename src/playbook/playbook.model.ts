@@ -10,7 +10,7 @@ export type IPlaybook = InferCreationAttributes<Playbook>;
 export class Playbook extends Model {
   @Field(() => String)
   @Column({ type: DataType.TEXT, primaryKey: true })
-  id: string;
+  playbookId: string;
 
   @Field(() => String)
   @Column({ type: DataType.TEXT })

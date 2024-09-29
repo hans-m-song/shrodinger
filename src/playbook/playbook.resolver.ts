@@ -17,14 +17,15 @@ export class PlaybookResolver {
 
   @Mutation(() => Playbook)
   async createPlaybook(
-    @Args({ name: 'id', type: () => String, nullable: false }) id: string,
+    @Args({ name: 'playbookId', type: () => String, nullable: false })
+    playbookId: string,
     @Args({ name: 'filepath', type: () => String, nullable: false })
     filepath: string,
     @Args({ name: 'contents', type: () => GraphQLJSON, nullable: false })
     contents: JSON,
   ): Promise<Playbook> {
     return this.playbookService.create({
-      id,
+      playbookId,
       filepath,
       contents,
       createdAt: Date.now(),

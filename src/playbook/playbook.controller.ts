@@ -23,22 +23,22 @@ export class PlaybookController {
     return this.playbookService.list({ skip, take });
   }
 
-  @Get(':id')
-  async get(@Param('id') id: string): Promise<Playbook> {
-    return this.playbookService.get(id);
+  @Get(':playbookId')
+  async get(@Param('playbookId') playbookId: string): Promise<Playbook> {
+    return this.playbookService.get(playbookId);
   }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    await this.playbookService.remove(id);
+  @Delete(':playbookId')
+  async remove(@Param('playbookId') playbookId: string) {
+    await this.playbookService.remove(playbookId);
   }
 
-  @Put(':id')
+  @Put(':playbookId')
   async update(
-    @Param('id') id: string,
+    @Param('playbookId') playbookId: string,
     @Body() body: IPlaybook,
   ): Promise<Playbook> {
-    return this.playbookService.update({ ...body, id });
+    return this.playbookService.update({ ...body, playbookId });
   }
 
   @Post()
