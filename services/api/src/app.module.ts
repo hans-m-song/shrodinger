@@ -5,15 +5,18 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Playbook } from './playbook/playbook.model';
 import { PlaybookModule } from './playbook/playbook.module';
 import init from './config/init';
+import { PlaybookRunModule } from './playbook-run/playbook-run.module';
 
 @Module({
   imports: [
     SequelizeModule.forRoot({
       dialect: 'sqlite',
-      models: [Playbook],
+      retryAttempts: 0,
+      logging(sql) {
+        console.log('[sql]', sql);
+      },
       autoLoadModels: true,
       synchronize: true,
       ...init.database,
@@ -26,6 +29,7 @@ import init from './config/init';
       },
     }),
     PlaybookModule,
+    PlaybookRunModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,6 @@
 {
+  "name": "@shrodinger/infra",
+  "private": true,
   "scripts": {
     "synth": "cdk synth --quiet",
     "diff": "cdk diff --no-change-set",

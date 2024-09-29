@@ -6,7 +6,10 @@ import { PlaybookTable } from './components/PlaybookTable';
 import { useListPlaybooksQuery } from './lib/playbooks';
 
 export const App = () => {
-  const { loading, error, data } = useListPlaybooksQuery({ skip: 0, take: 5 });
+  const { loading, error, data } = useListPlaybooksQuery({
+    offset: 0,
+    limit: 5,
+  });
 
   console.log({ loading, error, data });
 

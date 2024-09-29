@@ -12,8 +12,8 @@ export const PlaybookSchema = z.object({
 export type Playbook = z.infer<typeof PlaybookSchema>;
 
 export interface useListPlaybooksQueryVariables {
-  skip?: number;
-  take?: number;
+  offset?: number;
+  limit?: number;
 }
 
 export const useListPlaybooksQuery = (
@@ -24,8 +24,8 @@ export const useListPlaybooksQuery = (
     useListPlaybooksQueryVariables
   >(
     gql`
-      query ($skip: Int, $take: Int) {
-        playbooks(skip: $skip, take: $take) {
+      query ($offset: Int, $limit: Int) {
+        playbooks(offset: $offset, limit: $limit) {
           id
           filepath
           contents
