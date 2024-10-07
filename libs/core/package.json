@@ -1,0 +1,6 @@
+{
+  "name": "@shrodinger/core",
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
+}
