@@ -3,12 +3,12 @@ import 'source-map-support/register';
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import init, { logLevels } from './config/init';
-import { Logger } from '@nestjs/common';
+import init from './config/init';
+import { Logger } from './config/logger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: logLevels.slice(logLevels.indexOf(init.meta.logLevel)),
+    logger: new Logger(AppModule.name),
     cors: {
       origin: init.cors.allowedOrigins,
     },

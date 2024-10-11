@@ -1,4 +1,4 @@
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import init from './config/init';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { databaseModels } from './database/models';
+import { Logger } from './config/logger';
 
 const logger = new Logger(SequelizeModule.name);
 
@@ -30,7 +31,7 @@ const logger = new Logger(SequelizeModule.name);
         underscored: true,
       },
       sync: {
-        force: true,
+        force: false,
         alter: true,
       },
 

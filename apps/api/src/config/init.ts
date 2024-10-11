@@ -1,23 +1,34 @@
-import { LogLevel } from '@nestjs/common';
 import { z } from 'zod';
 
-export const logLevels = [
-  'verbose',
-  'debug',
-  'log',
-  'warn',
-  'error',
-  'fatal',
-] as const satisfies LogLevel[];
+export enum LogLevel {
+  Trace = 'trace',
+  Debug = 'debug',
+  Info = 'info',
+  Warn = 'warn',
+  Error = 'error',
+  Fatal = 'fatal',
+}
+
+export enum LogFormat {
+  Json = 'json',
+  Text = 'text',
+}
 
 export default {
   meta: {
     sha: z.string().default('unknown').parse(process.env.GIT_SHA),
-    debug: z
-      .boolean()
-      .default(false)
-      .parse(process.env.DEBUG === 'true'),
-    logLevel: z.enum(logLevels).default('warn').parse(process.env.LOG_LEVEL),
+    debug: process.env.DEBUG === 'true',
+    ci: 'GITHUB_ACTION' in process.env,
+  },
+  log: {
+    level: z
+      .nativeEnum(LogLevel)
+      .default(LogLevel.Warn)
+      .parse(process.env.LOG_LEVEL),
+    format: z
+      .nativeEnum(LogFormat)
+      .default(LogFormat.Json)
+      .parse(process.env.LOG_FORMAT),
   },
   http: {
     port: z.coerce
