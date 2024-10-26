@@ -1,0 +1,153 @@
+{
+  "id": "d6d446f5-2f53-4fa1-bc92-fbed6bf4c222",
+  "prevId": "bc17d9f4-8b55-407b-b2a9-74d4417e6757",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.playbook_runs": {
+      "name": "playbook_runs",
+      "schema": "",
+      "columns": {
+        "playbook_run_id": {
+          "name": "playbook_run_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "playbook_id": {
+          "name": "playbook_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contents": {
+          "name": "contents",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "started_at": {
+          "name": "started_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "playbook_runs_playbook_id_playbooks_playbook_id_fk": {
+          "name": "playbook_runs_playbook_id_playbooks_playbook_id_fk",
+          "tableFrom": "playbook_runs",
+          "tableTo": "playbooks",
+          "columnsFrom": [
+            "playbook_id"
+          ],
+          "columnsTo": [
+            "playbook_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "public.playbooks": {
+      "name": "playbooks",
+      "schema": "",
+      "columns": {
+        "playbook_id": {
+          "name": "playbook_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "filepath": {
+          "name": "filepath",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contents": {
+          "name": "contents",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "playbooks_filepath_unique": {
+          "name": "playbooks_filepath_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "filepath"
+          ]
+        }
+      },
+      "checkConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

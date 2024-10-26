@@ -2,16 +2,24 @@ import { z } from 'zod';
 import { registerAs } from '@nestjs/config';
 import { DATABASE_CONFIG_TOKEN } from './database.constants';
 
+export const DatabasConfigSchema = z.object({
+  name: z.string().default('postgres'),
+  host: z.string().default('localhost'),
+  port: z.number().int().default(5432),
+  user: z.string().default('postgres'),
+  password: z.string().default('postgres'),
+  ssl: z.boolean().default(true),
+});
+
 export const databaseConfig = registerAs(DATABASE_CONFIG_TOKEN, () =>
-  z
-    .object({
-      storage: z.string().default(':memory:'),
-      synchronize: z.boolean().default(false),
-    })
-    .parse({
-      storage: process.env.DATABASE_STORAGE,
-      synchronize: process.env.DATABASE_SYNCHRONIZE === 'true',
-    }),
+  DatabasConfigSchema.parse({
+    name: process.env.DATABASE_NAME,
+    host: process.env.DATABASE_HOST,
+    port: process.env.DATABASE_PORT,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    ssl: process.env.DATABASE_SSL !== 'false',
+  }),
 );
 
 export type DatabaseConfig = ReturnType<typeof databaseConfig>;

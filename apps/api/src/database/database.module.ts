@@ -1,32 +1,58 @@
-import { DynamicModule, Module, Provider } from '@nestjs/common';
-import { DatabaseCoreModule, DatabaseModelCache } from './database-core.module';
-import { ModelCtor } from 'sequelize-typescript';
-import { getModelToken } from '@nestjs/sequelize';
-import { DATABASE_MODEL_CACHE_TOKEN } from './database.constants';
+import {
+  DynamicModule,
+  Global,
+  Inject,
+  Module,
+  Provider,
+} from '@nestjs/common';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { DATABASE_TOKEN } from './database.constants';
+import { Logger } from '@/logger/logger.service';
+import * as schema from './schema';
+import { databaseConfig, DatabaseConfig } from './database.config';
+import { ConfigModule } from '@nestjs/config';
 
+export type Database = ReturnType<typeof drizzle<typeof schema>>;
+
+export const InjectDatabase = () => Inject(DATABASE_TOKEN);
+
+@Global()
 @Module({})
 export class DatabaseModule {
-  static forRoot(): DynamicModule {
-    return {
-      module: DatabaseModule,
-      imports: [DatabaseCoreModule.forRoot()],
-    };
-  }
+  static register(): DynamicModule {
+    const databaseProvider: Provider = {
+      provide: DATABASE_TOKEN,
+      inject: [databaseConfig.KEY],
+      useFactory: async (config: DatabaseConfig) => {
+        const logger = Logger.create(DatabaseModule.name);
 
-  static forFeature(models: ModelCtor[]): DynamicModule {
-    const instances: Provider[] = models.map((model) => ({
-      provide: getModelToken(model),
-      inject: [DATABASE_MODEL_CACHE_TOKEN],
-      useFactory: (cache: DatabaseModelCache) => {
-        cache.add(model);
-        return model;
+        const db = drizzle<typeof schema>({
+          casing: 'snake_case',
+          logger: {
+            logQuery: (query, params) => {
+              logger.verbose({ query, params });
+            },
+          },
+          connection: {
+            ...config,
+            log(...messages) {
+              logger.verbose({ messages });
+            },
+          },
+        });
+
+        logger.verbose('checking connection');
+        await db.execute('SELECT 1');
+
+        return db;
       },
-    }));
+    };
 
     return {
       module: DatabaseModule,
-      providers: instances,
-      exports: instances,
+      imports: [ConfigModule.forFeature(databaseConfig)],
+      providers: [databaseProvider],
+      exports: [databaseProvider],
     };
   }
 }

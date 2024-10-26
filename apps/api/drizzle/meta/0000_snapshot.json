@@ -1,0 +1,165 @@
+{
+  "id": "bc17d9f4-8b55-407b-b2a9-74d4417e6757",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.playbook_runs": {
+      "name": "playbook_runs",
+      "schema": "",
+      "columns": {
+        "playbookRunId": {
+          "name": "playbookRunId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "playbookId": {
+          "name": "playbookId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contents": {
+          "name": "contents",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "startedAt": {
+          "name": "startedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "completedAt": {
+          "name": "completedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "deletedAt": {
+          "name": "deletedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "playbook_runs_playbookId_playbooks_playbookId_fk": {
+          "name": "playbook_runs_playbookId_playbooks_playbookId_fk",
+          "tableFrom": "playbook_runs",
+          "tableTo": "playbooks",
+          "columnsFrom": [
+            "playbookId"
+          ],
+          "columnsTo": [
+            "playbookId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "public.playbooks": {
+      "name": "playbooks",
+      "schema": "",
+      "columns": {
+        "playbookId": {
+          "name": "playbookId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "filepath": {
+          "name": "filepath",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contents": {
+          "name": "contents",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "deletedAt": {
+          "name": "deletedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "playbooks_filepath_unique": {
+          "name": "playbooks_filepath_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "filepath"
+          ]
+        }
+      },
+      "checkConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
