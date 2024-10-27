@@ -1,5 +1,5 @@
 import { Injectable, LoggerService } from '@nestjs/common';
-import init, { LogFormat } from '@/config/init';
+import init, { LogFormat } from '../config/init';
 import { Logger as NestjsLogger, PinoLogger } from 'nestjs-pino';
 
 @Injectable()

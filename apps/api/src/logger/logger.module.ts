@@ -11,18 +11,18 @@ import { LOGGER_TOKEN } from './logger.constants';
 const injected = new Set<string>();
 
 export const getLoggerToken = (context = '') => {
+  injected.add(context);
   return context ? `${LOGGER_TOKEN}.${context}` : LOGGER_TOKEN;
 };
 
 export const InjectLogger = (context = '') => {
-  injected.add(context);
   return Inject(getLoggerToken(context));
 };
 
 @Global()
 @Module({})
 export class LoggerModule {
-  static forRoot(): DynamicModule {
+  static register(): DynamicModule {
     const rootLoggerProvider: Provider = {
       provide: getLoggerToken(),
       useValue: Logger.create(),

@@ -1,118 +1,65 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { err, ok, Result, safe } from '@shrodinger/core/fp';
-import { Playbook, PlaybookSchema } from '@shrodinger/contracts';
-import { Op } from 'sequelize';
-import { PlaybookErrors } from './playbook.errors';
 import {
-  PlaybookCreationAttributes,
-  PlaybookModel,
-} from '../database/models/playbook.model';
+  ListPlaybooksQueryHandler,
+  ListPlaybooksQuery,
+} from './handlers/list-playbooks.handler';
+import {
+  DeletePlaybookCommand,
+  DeletePlaybookCommandHandler,
+} from './handlers/delete-playbook';
+import {
+  CreatePlaybookCommand,
+  CreatePlaybookCommandHandler,
+} from './handlers/create-playbook.handler';
+import {
+  UpdatePlaybookCommand,
+  UpdatePlaybookCommandHandler,
+} from './handlers/update-playbook.handler';
+import {
+  ReadPlaybookQueryHandler,
+  ReadPlaybookQuery,
+} from './handlers/read-playbook.handler';
 
 @Injectable()
 export class PlaybookService {
   constructor(
-    @InjectModel(PlaybookModel) private playbookModel: typeof PlaybookModel,
+    private readonly listPlaybooksRunsQuery: ListPlaybooksQueryHandler,
+    private readonly createPlaybookCommand: CreatePlaybookCommandHandler,
+    private readonly readPlaybookQuery: ReadPlaybookQueryHandler,
+    private readonly updatePlaybookCommand: UpdatePlaybookCommandHandler,
+    private readonly deletePlaybookCommand: DeletePlaybookCommandHandler,
   ) {}
 
-  async list(search?: {
-    filepath?: string;
-    offset?: number;
-    limit?: number;
-  }): Promise<Result<Playbook[]>> {
-    const result = await safe(this.playbookModel.findAll)({
-      where: {
-        ...(search?.filepath && {
-          filepath: { [Op.like]: `%${search.filepath}%` },
-        }),
-      },
-      limit: search?.limit,
-      offset: search?.offset ?? 0,
-    });
-    if (!result.ok) {
-      return err(new PlaybookErrors.List({ search }, result.error));
-    }
-
-    if (!result.data) {
-      return err(new PlaybookErrors.NotFound({ search }));
-    }
-
-    const parsed = PlaybookSchema.array().safeParse(result.data);
-    if (!parsed.success) {
-      return err(new PlaybookErrors.Validation(parsed.error, result.data));
-    }
-
-    return ok(parsed.data);
+  async listPlaybooks(
+    args: ConstructorParameters<typeof ListPlaybooksQuery>[0],
+  ) {
+    const query = new ListPlaybooksQuery(args);
+    return this.listPlaybooksRunsQuery.execute(query);
   }
 
-  async get(playbookId: number): Promise<Result<Playbook>> {
-    const result = await safe(this.playbookModel.findOne)({
-      where: { playbookId },
-    });
-    if (!result.ok) {
-      return err(new PlaybookErrors.NotFound({ playbookId }, result.error));
-    }
-
-    if (!result.data) {
-      return err(new PlaybookErrors.NotFound({ playbookId }));
-    }
-
-    const parsed = PlaybookSchema.safeParse(result.data);
-    if (!parsed.success) {
-      return err(new PlaybookErrors.Validation(parsed.error, result.data));
-    }
-
-    return ok(parsed.data);
+  async createPlaybook(
+    args: ConstructorParameters<typeof CreatePlaybookCommand>[0],
+  ) {
+    const command = new CreatePlaybookCommand(args);
+    return this.createPlaybookCommand.execute(command);
   }
 
-  async remove(playbookId: number): Promise<Result<void>> {
-    const result = await safe(this.playbookModel.destroy)({
-      where: { playbookId },
-    });
-    if (!result.ok) {
-      return err(new PlaybookErrors.Remove({ playbookId }, result.error));
-    }
-
-    return ok(void null);
+  async readPlaybook(args: ConstructorParameters<typeof ReadPlaybookQuery>[0]) {
+    const query = new ReadPlaybookQuery(args);
+    return this.readPlaybookQuery.execute(query);
   }
 
-  async create(
-    playbook: PlaybookCreationAttributes,
-  ): Promise<Result<Playbook>> {
-    const result = await safe(this.playbookModel.create)(playbook);
-    if (!result.ok) {
-      return err(new PlaybookErrors.Create(playbook, result.error));
-    }
-
-    if (!result.data) {
-      return err(new PlaybookErrors.NotFound(playbook));
-    }
-
-    const parsed = PlaybookSchema.safeParse(result.data);
-    if (!parsed.success) {
-      return err(new PlaybookErrors.Validation(parsed.error, result.data));
-    }
-
-    return ok(parsed.data);
+  async updatePlaybook(
+    args: ConstructorParameters<typeof UpdatePlaybookCommand>[0],
+  ) {
+    const command = new UpdatePlaybookCommand(args);
+    return this.updatePlaybookCommand.execute(command);
   }
 
-  async update(
-    playbook: PlaybookCreationAttributes,
-  ): Promise<Result<Playbook>> {
-    const result = await safe(this.playbookModel.build(playbook).save)();
-    if (!result.ok) {
-      return err(new PlaybookErrors.Update(playbook, result.error));
-    }
-
-    if (!result.data) {
-      return err(new PlaybookErrors.NotFound(playbook));
-    }
-
-    const parsed = PlaybookSchema.safeParse(result.data);
-    if (!parsed.success) {
-      return err(new PlaybookErrors.Validation(parsed.error, result.data));
-    }
-
-    return ok(parsed.data);
+  async deletePlaybook(
+    args: ConstructorParameters<typeof DeletePlaybookCommand>[0],
+  ) {
+    const command = new DeletePlaybookCommand(args);
+    return this.deletePlaybookCommand.execute(command);
   }
 }
