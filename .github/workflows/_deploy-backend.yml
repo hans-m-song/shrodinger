@@ -4,7 +4,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ${{ github.repository_owner }}
 
     steps:
       - uses: axatol/actions/rollout-kubernetes-deployment@release

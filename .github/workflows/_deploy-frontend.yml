@@ -13,7 +13,7 @@ env:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ${{ github.repository_owner }}
 
     steps:
       - uses: actions/checkout@v4
