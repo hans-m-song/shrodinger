@@ -3,30 +3,32 @@ export interface Some<T> {
   value: T;
 }
 
-export const some = <T>(value: T): Some<T> => ({
-  ok: true,
-  value,
-});
-
 export interface None {
   ok: false;
 }
 
-export const none = (): None => ({
-  ok: false,
-});
-
 export type Maybe<T> = Some<T> | None;
 
-type Fn = (...args: any[]) => any;
+export namespace Maybe {
+  export const some = <T>(value: T): Some<T> => ({
+    ok: true,
+    value,
+  });
 
-export const maybe =
-  <F extends Fn>(fn: F) =>
-  (...args: Parameters<F>): Maybe<ReturnType<F>> => {
-    const value = fn(...args);
-    if (value) {
-      return some(value);
-    }
+  export const none = (): None => ({
+    ok: false,
+  });
 
-    return none();
-  };
+  type Fn = (...args: any[]) => any;
+
+  export const fromFn =
+    <F extends Fn>(fn: F) =>
+    (...args: Parameters<F>): Maybe<ReturnType<F>> => {
+      const value = fn(...args);
+      if (value) {
+        return some(value);
+      }
+
+      return none();
+    };
+}

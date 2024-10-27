@@ -1,25 +1,23 @@
 import { ZodError } from 'zod';
 import { InternalServerError, NotFoundError } from './http.error';
+import { ValidationError } from './runtime.error';
 
 export const createErrorSet = (kind: string) => {
+  class Validation extends ValidationError {
+    name = `${kind}ValidationError`;
+
+    constructor(cause: ZodError, input?: unknown, opts?: Record<string, any>) {
+      super(`Failed to validate ${kind}`, cause, input, opts);
+    }
+  }
+
   class NotFound extends NotFoundError {
     name = `${kind}NotFoundError`;
 
     constructor(opts?: Record<string, any>, cause?: Error) {
-      super(`${kind} not found`, {
+      super(`Failed to find ${kind}`, {
+        cause,
         context: opts,
-        cause,
-      });
-    }
-  }
-
-  class Validation extends InternalServerError {
-    name = `${kind}ValidationError`;
-
-    constructor(cause: ZodError, input: unknown) {
-      super(`Failed to validate ${kind} against schema`, {
-        cause,
-        context: { input, issues: cause.issues },
       });
     }
   }
@@ -80,8 +78,8 @@ export const createErrorSet = (kind: string) => {
   }
 
   return {
-    NotFound,
     Validation,
+    NotFound,
     List,
     Get,
     Remove,

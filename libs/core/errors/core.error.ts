@@ -1,4 +1,4 @@
-import { ZodError } from 'zod';
+import { Errors } from './errors';
 
 export interface CoreErrorOptions {
   context?: Record<string, unknown>;
@@ -8,75 +8,45 @@ export interface CoreErrorOptions {
 export class CoreError extends Error {
   name = 'CoreError';
 
+  static isCoreError = Errors.is(CoreError);
+
   constructor(
     message: string,
-    readonly options: CoreErrorOptions,
+    readonly options?: CoreErrorOptions,
   ) {
     super(message);
   }
 
   get cause() {
-    return this.options.cause;
+    return this.options?.cause;
   }
 
-  static is(error: unknown): error is CoreError {
-    try {
-      return error instanceof CoreError;
-    } catch {
-      return false;
-    }
+  get context() {
+    return this.options?.context;
   }
 
   toJSON() {
     return {
       name: this.name,
       message: this.message,
-      stack: this.stack,
-      context: this.options.context,
-      cause: CoreError.is(this.options.cause)
-        ? this.options.cause.toJSON()
+      stack: stripStack(this.stack),
+      context: this.options?.context,
+      cause: Errors.is(CoreError)(this?.cause)
+        ? this.cause.toJSON()
         : {
-            name: this.options.cause?.name,
-            message: this.options.cause?.message,
-            stack: this.options.cause?.stack,
+            name: this.options?.cause?.name,
+            message: this.options?.cause?.message,
+            stack: stripStack(this.options?.cause?.stack),
           },
     };
   }
 }
 
-export class ValidationException extends CoreError {
-  name = 'ValidationException';
-
-  constructor(
-    cause: ZodError,
-    input?: unknown,
-    context?: Record<string, unknown>,
-  ) {
-    super('Schema validation failed', {
-      cause,
-      context: {
-        input,
-        issues: cause.issues,
-        ...context,
-      },
-    });
-  }
-}
-
-export class ParseException extends CoreError {
-  name = 'ParseException';
-
-  constructor(
-    cause: Error,
-    input?: unknown,
-    context?: Record<string, unknown>,
-  ) {
-    super('Parse failed', {
-      cause,
-      context: {
-        input,
-        ...context,
-      },
-    });
-  }
-}
+const stripStack = (stack?: string) =>
+  stack
+    ?.split('\n')
+    .slice(1)
+    .filter((line) => !line.includes('node_modules'))
+    .filter((line) => !line.includes('node:internal'))
+    .map((line) => line.trim())
+    .join('\n');
