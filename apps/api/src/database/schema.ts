@@ -6,7 +6,7 @@ const activeRecord = {
   version: t
     .bigint('version', { mode: 'number' })
     .notNull()
-    .default(1)
+    .$default(() => 1)
     .$onUpdate(() => sql`version + 1`),
 
   createdAt: t

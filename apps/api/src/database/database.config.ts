@@ -3,7 +3,7 @@ import { registerAs } from '@nestjs/config';
 import { DATABASE_CONFIG_TOKEN } from './database.constants';
 
 export const DatabasConfigSchema = z.object({
-  name: z.string().default('postgres'),
+  database: z.string().default('postgres'),
   host: z.string().default('localhost'),
   port: z.number().int().default(5432),
   user: z.string().default('postgres'),
@@ -13,7 +13,7 @@ export const DatabasConfigSchema = z.object({
 
 export const databaseConfig = registerAs(DATABASE_CONFIG_TOKEN, () =>
   DatabasConfigSchema.parse({
-    name: process.env.DATABASE_NAME,
+    database: process.env.DATABASE_NAME,
     host: process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT,
     user: process.env.DATABASE_USER,
