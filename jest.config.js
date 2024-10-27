@@ -1,6 +1,5 @@
 const { pathsToModuleNameMapper } = require('ts-jest');
 const { jsWithBabel } = require('ts-jest/presets');
-const { compilerOptions } = require('./tsconfig.json');
 
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
@@ -26,18 +25,16 @@ module.exports = {
       rootDir: './apps/api',
       testMatch: ['<rootDir>/**/*.spec.ts'],
       testEnvironment: 'node',
-      moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-        prefix: '<rootDir>/../..',
-      }),
+      moduleNameMapper: pathsToModuleNameMapper(
+        require('./apps/api/tsconfig.json').compilerOptions.paths,
+        { prefix: '<rootDir>' },
+      ),
       ...jsWithBabel,
     },
     {
       displayName: 'web',
       rootDir: './apps/web',
       testMatch: ['<rootDir>/apps/web/**/*.spec.tsx?'],
-      moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-        prefix: '<rootDir>/../..',
-      }),
       ...jsWithBabel,
     },
   ],

@@ -3,17 +3,14 @@
     "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "target": "ES2021",
     "sourceMap": true,
-    "incremental": true,
     "skipLibCheck": true,
-    "strict": true,
     "noImplicitAny": false,
-    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "paths": {
       "@shrodinger/*": ["./libs/*"]
     }
