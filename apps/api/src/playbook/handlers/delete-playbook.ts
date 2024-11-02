@@ -9,7 +9,7 @@ import { ArgsType, Field, Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class DeletePlaybookArgs {
-  @Field(() => Int, { nullable: false })
+  @Field(() => Int)
   declare playbookId: number;
 }
 

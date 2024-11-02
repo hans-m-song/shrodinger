@@ -76,6 +76,22 @@ describe('PlaybookController', () => {
     });
   });
 
+  it('should get a playbook by playbookId', async () => {
+    // given
+    const playbooks = await helpers.playbooks.seed(10);
+    const playbook = playbooks.attributes[1];
+
+    // when
+    const response = await request(app.getHttpServer())
+      .get(`/playbooks/${playbook.playbookId}`)
+      .send();
+
+    // then
+    expect(response.body).toMatchObject({
+      data: playbook,
+    });
+  });
+
   it('should create a playbook', async () => {
     // given
     const playbook: CreatePlaybookAttributes = {

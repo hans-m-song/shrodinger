@@ -5,6 +5,13 @@ import { Database, InjectDatabase, playbookRuns } from '../../database';
 import { eq } from 'drizzle-orm';
 import { Result } from '@shrodinger/core/fp';
 import { PlaybookRunErrors } from '../playbook-run.errors';
+import { ArgsType, Field, Int } from '@nestjs/graphql';
+
+@ArgsType()
+export class DeletePlaybookRunArgs {
+  @Field(() => Int)
+  declare playbookRunId: number;
+}
 
 export class DeletePlaybookRunCommand {
   constructor(public readonly args: { playbookRunId: number }) {}

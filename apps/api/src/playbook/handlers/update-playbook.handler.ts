@@ -11,10 +11,11 @@ import {
 } from '@shrodinger/contracts';
 import { ArgsType, Field, Int } from '@nestjs/graphql';
 import { GraphQLJSON } from 'graphql-scalars';
+import { eq } from 'drizzle-orm';
 
 @ArgsType()
 export class UpdatePlaybookArgs implements UpdatePlaybookAttributes {
-  @Field(() => Int, { nullable: false })
+  @Field(() => Int)
   declare playbookId: number;
 
   @Field(() => String, { nullable: true })
@@ -42,7 +43,11 @@ export class UpdatePlaybookCommandHandler {
     this.logger.debug(command);
 
     const result = await Result.fromPromise(
-      this.db.update(playbooks).set(command.args).returning(),
+      this.db
+        .update(playbooks)
+        .set(command.args)
+        .where(eq(playbooks.playbookId, command.args.playbookId))
+        .returning(),
     );
 
     if (!result.ok) {

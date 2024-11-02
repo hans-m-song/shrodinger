@@ -3,14 +3,13 @@
   "private": true,
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "db:migrate": "drizzle-kit migrate",
     "db:generate": "drizzle-kit generate",
-    "clean": "rm -rf ./dist"
+    "clean": "rm -rf ./dist ./node_modules"
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",
@@ -41,6 +40,7 @@
     "swc-loader": "^0.2.6"
   },
   "devDependencies": {
+    "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@testcontainers/postgresql": "^10.13.2",

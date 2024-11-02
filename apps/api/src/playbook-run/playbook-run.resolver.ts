@@ -9,24 +9,25 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { Playbook, PlaybookRun } from '@shrodinger/contracts';
+import { Playbook, PlaybookRun, PlaybookRunLog } from '@shrodinger/contracts';
 import { GraphQLError } from 'graphql';
-import {
-  CreatePlaybookRunArgs,
-  DeletePlaybookRunArgs,
-  ListPlaybookRunsArgs,
-  UpdatePlaybookRunArgs,
-} from './playbook-run.args';
 import { PlaybookRunEntity } from './playbook-run.entity';
 import { PlaybookRunService } from './playbook-run.service';
+import { PlaybookRunLogEntity } from '../playbook-run-log/playbook-run-log.entity';
+import { PlaybookRunLogService } from '../playbook-run-log/playbook-run-log.service';
+import { PaginationArgs } from '../dtos/pagination.args';
+import { CreatePlaybookRunArgs } from './handlers/create-playbook-run.handler';
+import { DeletePlaybookRunArgs } from './handlers/delete-playbook-run';
+import { ListPlaybookRunsArgs } from './handlers/list-playbook-runs.handler';
 
 @Resolver(() => PlaybookRunEntity)
 export class PlaybookRunResolver {
   constructor(
     @InjectLogger(PlaybookRunResolver.name)
     private readonly logger: Logger,
-    private playbookService: PlaybookService,
-    private playbookRunService: PlaybookRunService,
+    private readonly playbookService: PlaybookService,
+    private readonly playbookRunService: PlaybookRunService,
+    private readonly playbookRunLogService: PlaybookRunLogService,
   ) {}
 
   @Query(() => [PlaybookRunEntity])
@@ -61,12 +62,17 @@ export class PlaybookRunResolver {
     return result.data;
   }
 
-  @Mutation(() => PlaybookRunEntity)
-  async createPlaybookRun(
+  @ResolveField(() => [PlaybookRunLogEntity])
+  async playbookRunLogs(
+    @Parent()
+    { playbookRunId }: PlaybookRunEntity,
     @Args()
-    args: CreatePlaybookRunArgs,
-  ): Promise<PlaybookRun> {
-    const result = await this.playbookRunService.createPlaybookRun(args);
+    args: PaginationArgs,
+  ): Promise<PlaybookRunLog[]> {
+    const result = await this.playbookRunLogService.listPlaybookRunLogs({
+      ...args,
+      playbookRunId,
+    });
     if (!result.ok) {
       this.logger.error(result.error);
       throw new GraphQLError(result.error.message, {
@@ -78,11 +84,11 @@ export class PlaybookRunResolver {
   }
 
   @Mutation(() => PlaybookRunEntity)
-  async updatePlaybookRun(
+  async createPlaybookRun(
     @Args()
-    args: UpdatePlaybookRunArgs,
+    args: CreatePlaybookRunArgs,
   ): Promise<PlaybookRun> {
-    const result = await this.playbookRunService.updatePlaybookRun(args);
+    const result = await this.playbookRunService.createPlaybookRun(args);
     if (!result.ok) {
       this.logger.error(result.error);
       throw new GraphQLError(result.error.message, {

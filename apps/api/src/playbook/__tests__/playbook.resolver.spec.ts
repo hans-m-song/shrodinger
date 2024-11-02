@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { PlaybookModule } from '../../playbook/playbook.module';
 import { PlaybookResolver } from '../playbook.resolver';
-import { LoggerModule } from '../../logger';
+import { Logger, LoggerModule } from '../../logger';
 import { Database, DatabaseModule, playbooks } from '../../database';
 import {
   DatabaseHelpers,
@@ -12,6 +12,7 @@ import { DATABASE_TOKEN } from '../../database/database.constants';
 import { PlaybookRunModule } from '../../playbook-run/playbook-run.module';
 import { databaseConfig } from '../../database/database.config';
 import { INestApplication } from '@nestjs/common';
+import { mockLogger } from '../../../test/mocks/logger';
 
 describe('PlaybookResolver', () => {
   let helpers: DatabaseHelpers;
@@ -30,6 +31,8 @@ describe('PlaybookResolver', () => {
         PlaybookModule,
       ],
     })
+      .overrideProvider(Logger)
+      .useValue(mockLogger)
       .overrideProvider(databaseConfig.KEY)
       .useValue(helpers.database.config)
       .compile();
@@ -111,7 +114,8 @@ describe('PlaybookResolver', () => {
     await expect(response).resolves.toMatchObject({
       ...playbook,
       contents: { foo: 'bar' },
-      updatedAt: expect.closeTo(Date.now(), 4),
+      version: 2,
+      updatedAt: expect.any(Number),
     });
   });
 

@@ -8,7 +8,21 @@ import {
   CreatePlaybookRunAttributes,
   PlaybookRun,
   PlaybookRunSchema,
+  PlaybookRunStatus,
 } from '@shrodinger/contracts';
+import { ArgsType, Field, Int } from '@nestjs/graphql';
+
+@ArgsType()
+export class CreatePlaybookRunArgs implements CreatePlaybookRunAttributes {
+  @Field(() => Int)
+  declare playbookId: number;
+
+  @Field(() => PlaybookRunStatus, { defaultValue: PlaybookRunStatus.Pending })
+  declare status: PlaybookRunStatus;
+
+  @Field(() => String, { defaultValue: '{}' })
+  declare contents: string;
+}
 
 export class CreatePlaybookRunCommand {
   constructor(public readonly args: CreatePlaybookRunAttributes) {}

@@ -1,9 +1,10 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Playbook } from '@shrodinger/contracts';
-import { GraphQLBigInt, GraphQLJSON } from 'graphql-scalars';
+import { GraphQLJSON } from 'graphql-scalars';
+import { ActiveRecordEntity } from '../dtos/active-record.entity';
 
 @ObjectType('Playbook')
-export class PlaybookEntity implements Playbook {
+export class PlaybookEntity extends ActiveRecordEntity implements Playbook {
   @Field(() => Int)
   declare playbookId: number;
 
@@ -12,10 +13,4 @@ export class PlaybookEntity implements Playbook {
 
   @Field(() => GraphQLJSON)
   declare contents: Record<string, unknown>;
-
-  @Field(() => GraphQLBigInt)
-  declare createdAt: number;
-
-  @Field(() => GraphQLBigInt)
-  declare updatedAt: number;
 }

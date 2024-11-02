@@ -9,9 +9,14 @@ import { ListPlaybookRunsHandler } from './handlers/list-playbook-runs.handler';
 import { ReadPlaybookRunHandler } from './handlers/read-playbook-run.handler';
 import { UpdatePlaybookRunHandler } from './handlers/update-playbook-run.handler';
 import { PlaybookRunController } from './playbook-run.controller';
+import { PlaybookRunLogModule } from '../playbook-run-log/playbook-run-log.module';
 
 @Module({
-  imports: [DatabaseModule.register(), forwardRef(() => PlaybookModule)],
+  imports: [
+    DatabaseModule.register(),
+    forwardRef(() => PlaybookModule),
+    forwardRef(() => PlaybookRunLogModule),
+  ],
   controllers: [PlaybookRunController],
   providers: [
     PlaybookRunService,

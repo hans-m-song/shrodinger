@@ -9,7 +9,6 @@ import {
 import { Playbook, PlaybookRun } from '@shrodinger/contracts';
 import { GraphQLError } from 'graphql';
 import { InjectLogger, Logger } from '../logger';
-import { ListPlaybookRunsArgs } from '../playbook-run/playbook-run.args';
 import { PlaybookRunEntity } from '../playbook-run/playbook-run.entity';
 import { PlaybookRunService } from '../playbook-run/playbook-run.service';
 import { PlaybookEntity } from './playbook.entity';
@@ -18,6 +17,7 @@ import { ListPlaybooksArgs } from './handlers/list-playbooks.handler';
 import { CreatePlaybookArgs } from './handlers/create-playbook.handler';
 import { UpdatePlaybookArgs } from './handlers/update-playbook.handler';
 import { DeletePlaybookArgs } from './handlers/delete-playbook';
+import { PaginationArgs } from '../dtos/pagination.args';
 
 @Resolver(() => PlaybookEntity)
 export class PlaybookResolver {
@@ -50,7 +50,7 @@ export class PlaybookResolver {
     @Parent()
     { playbookId }: PlaybookEntity,
     @Args()
-    args: ListPlaybookRunsArgs,
+    args: PaginationArgs,
   ): Promise<PlaybookRun[]> {
     const result = await this.playbookRunService.listPlaybookRuns({
       ...args,

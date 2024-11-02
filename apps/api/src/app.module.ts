@@ -10,6 +10,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import init from './config/init';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { PlaybookRunLogModule } from './playbook-run-log/playbook-run-log.module';
 
 const externalModules = [
   LoggerModule.register(),
@@ -18,8 +19,8 @@ const externalModules = [
     driver: ApolloDriver,
     autoSchemaFile: join(__dirname, 'apps/api/src/schema.graphql'),
     debug: init.meta.debug,
-    includeStacktraceInErrorResponses: false,
-    hideSchemaDetailsFromClientErrors: true,
+    includeStacktraceInErrorResponses: init.meta.debug,
+    hideSchemaDetailsFromClientErrors: !init.meta.debug,
     status400ForVariableCoercionErrors: true,
     stopOnTerminationSignals: true,
     playground: false,
@@ -27,7 +28,11 @@ const externalModules = [
   }),
 ];
 
-const internalModules = [PlaybookModule, PlaybookRunModule];
+const internalModules = [
+  PlaybookModule,
+  PlaybookRunModule,
+  PlaybookRunLogModule,
+];
 
 @Module({
   imports: [...externalModules, ...internalModules],

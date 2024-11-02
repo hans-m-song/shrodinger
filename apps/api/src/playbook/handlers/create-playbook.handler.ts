@@ -14,10 +14,10 @@ import { GraphQLJSON } from 'graphql-scalars';
 
 @ArgsType()
 export class CreatePlaybookArgs implements CreatePlaybookAttributes {
-  @Field(() => String, { nullable: false })
+  @Field(() => String)
   declare filepath: string;
 
-  @Field(() => GraphQLJSON, { nullable: false })
+  @Field(() => GraphQLJSON)
   declare contents: Record<string, unknown>;
 }
 
