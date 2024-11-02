@@ -1,10 +1,11 @@
-FROM node:20-alpine
+FROM node:20-alpine AS deps
 WORKDIR /app
-COPY nest-cli.json tsconfig.json tsconfig.build.json ./
-COPY package.json package-lock.json ./
+COPY tsconfig.json package*.json ./
+COPY apps/api/package.json apps/api/package.json
 RUN npm ci
-COPY src src
-ARG GIT_SHA
-ENV GIT_SHA=${GIT_SHA}
-RUN npm run build
-CMD [ "npm", "run", "start:prod" ]
+
+FROM deps AS api
+COPY apps/api apps/api
+COPY libs libs
+RUN npm run api:build
+CMD ["/app/apps/api/dist/apps/api/src/main.js"]
