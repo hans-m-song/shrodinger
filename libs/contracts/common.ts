@@ -1,8 +1,66 @@
 import { z, ZodType } from 'zod';
 
-export const IDSchema = z.number().int().min(0);
+export const IDSchema = z
+  .number()
+  .int()
+  .min(0)
+  .describe('Serial integer primary key ID');
 
-export type ID = z.infer<typeof IDSchema>;
+export const EpochSchema = z
+  .number()
+  .int()
+  .min(0)
+  .describe('Unix epoch time in milliseconds');
+
+export const VersionSchema = z
+  .number()
+  .int()
+  .min(1)
+  .describe('Record number of changes');
+
+export const EpochRangeSchema = z
+  .object({
+    from: EpochSchema.optional(),
+    to: EpochSchema.optional(),
+  })
+  .describe('Range of numbers, "from" is inclusive, "to" is exclusive')
+  .refine(
+    ({ from, to }) => {
+      if (!from || !to) {
+        return true;
+      }
+
+      return from < to;
+    },
+    { message: 'from must be less than to' },
+  );
+export const RangeSchema = z
+  .object({
+    from: z.number().int().min(0).optional(),
+    to: z.number().int().min(1).optional(),
+  })
+  .describe('Range of numbers, "from" is inclusive, "to" is exclusive')
+  .refine(
+    ({ from, to }) => {
+      if (!from || !to) {
+        return true;
+      }
+
+      return from < to;
+    },
+    { message: 'from must be less than to' },
+  );
+
+export const PaginationSchema = z.object({
+  limit: z.number().int().min(1).default(10),
+  offset: z.number().int().min(0).default(0),
+});
+
+export const ActiveRecordSchema = z.object({
+  version: z.number().int().min(1),
+  createdAt: EpochSchema,
+  updatedAt: EpochSchema,
+});
 
 export const ResponseSchema = (data: ZodType) =>
   z.object({
@@ -16,6 +74,8 @@ export const ErrorResponseSchema = z.object({
     detail: z.any().optional(),
   }),
 });
+
+export type ErrorResponse = z.infer<typeof ErrorResponseSchema>;
 
 export const commonResponses = {
   400: ErrorResponseSchema,

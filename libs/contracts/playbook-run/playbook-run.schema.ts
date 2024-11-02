@@ -1,6 +1,11 @@
 import { z } from 'zod';
-import { IDSchema } from '../common';
-import { PaginationSchema } from '../pagination';
+import {
+  ActiveRecordSchema,
+  EpochSchema,
+  IDSchema,
+  PaginationSchema,
+  EpochRangeSchema,
+} from '../common';
 
 export enum PlaybookRunStatus {
   Pending = 'pending',
@@ -18,32 +23,36 @@ export const PlaybookRunStatusValues = [
 
 export const PlaybookRunStatusSchema = z.nativeEnum(PlaybookRunStatus);
 
-export const PlaybookRunSchema = z.object({
-  playbookRunId: IDSchema,
-  playbookId: IDSchema,
-  status: PlaybookRunStatusSchema,
-  contents: z.any(),
-  createdAt: z.number(),
-  updatedAt: z.number(),
-  startedAt: z.number().nullable(),
-  completedAt: z.number().nullable(),
-});
+export const PlaybookRunSchema = z
+  .object({
+    playbookRunId: IDSchema,
+    playbookId: IDSchema,
+    status: PlaybookRunStatusSchema,
+    startedAt: EpochSchema.nullable(),
+    completedAt: EpochSchema.nullable(),
+  })
+  .merge(ActiveRecordSchema);
 
 export type PlaybookRun = z.infer<typeof PlaybookRunSchema>;
 
-export const ListPlaybookRunsAttributesSchema = PaginationSchema.extend({
-  status: PlaybookRunStatusSchema.optional(),
-  playbookId: IDSchema.optional(),
-});
+export const ListPlaybookRunsAttributesSchema = z
+  .object({
+    status: PlaybookRunStatusSchema.optional(),
+    playbookId: IDSchema.optional(),
+    createdAt: EpochRangeSchema.optional(),
+    updatedAt: EpochRangeSchema.optional(),
+    startedAt: EpochRangeSchema.optional(),
+    completedAt: EpochRangeSchema.optional(),
+  })
+  .merge(PaginationSchema);
 
 export type ListPlaybookRunsAttributes = z.infer<
   typeof ListPlaybookRunsAttributesSchema
 >;
 
 export const CreatePlaybookRunAttributesSchema = z.object({
-  playbookId: IDSchema,
-  status: PlaybookRunStatusSchema,
-  contents: z.any(),
+  playbookId: PlaybookRunSchema.shape.playbookId,
+  status: PlaybookRunSchema.shape.status.optional(),
 });
 
 export type CreatePlaybookRunAttributes = z.infer<
@@ -51,8 +60,10 @@ export type CreatePlaybookRunAttributes = z.infer<
 >;
 
 export const UpdatePlaybookRunAttributesSchema = z.object({
-  status: PlaybookRunStatusSchema.optional(),
-  contents: z.any(),
+  playbookRunId: PlaybookRunSchema.shape.playbookRunId,
+  status: PlaybookRunSchema.shape.status.optional(),
+  startedAt: PlaybookRunSchema.shape.startedAt.optional(),
+  updatedAt: PlaybookRunSchema.shape.updatedAt.optional(),
 });
 
 export type UpdatePlaybookRunAttributes = z.infer<

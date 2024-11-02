@@ -39,18 +39,6 @@ export const playbookRunContract = c.router(
         200: ResponseSchema(PlaybookRunSchema),
       },
     },
-    updatePlaybookRun: {
-      method: 'PATCH',
-      path: '/playbook-runs/:playbookRunId',
-      summary: 'Update a playbook run',
-      pathParams: z.object({
-        playbookRunId: z.string().pipe(IDSchema),
-      }),
-      body: PlaybookRunSchema,
-      responses: {
-        200: ResponseSchema(PlaybookRunSchema),
-      },
-    },
     deletePlaybookRun: {
       method: 'DELETE',
       path: '/playbook-runs/:playbookRunId',

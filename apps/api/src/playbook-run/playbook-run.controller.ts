@@ -68,33 +68,6 @@ export class PlaybookRunController {
     );
   }
 
-  @TsRestHandler(playbookRunContract.updatePlaybookRun)
-  async updatePlaybookRun() {
-    return tsRestHandler(
-      playbookRunContract.updatePlaybookRun,
-      async ({ body }) => {
-        const result = await this.playbookRunService.updatePlaybookRun(body);
-        if (!result.ok) {
-          this.logger.error(result.error);
-
-          const error = Errors.as(HttpError)(result.error);
-          if (error) {
-            return error.toResponse() as ServerInferResponses<
-              typeof playbookRunContract.updatePlaybookRun
-            >;
-          }
-
-          return defaultResponse[500];
-        }
-
-        return {
-          status: 200,
-          body: { data: result.data },
-        };
-      },
-    );
-  }
-
   @TsRestHandler(playbookRunContract.getPlaybookRun)
   async getPlaybookRun() {
     return tsRestHandler(
