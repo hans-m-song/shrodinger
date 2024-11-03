@@ -11,27 +11,27 @@ const c = initContract();
 export const playbookContract = c.router(
   {
     listPlaybooks: {
+      summary: 'List all playbooks',
       method: 'GET',
       path: '/playbooks',
-      summary: 'List all playbooks',
       query: ListPlaybooksAttributesSchema,
       responses: {
         200: ResponseSchema(PlaybookSchema.array()),
       },
     },
     createPlaybook: {
+      summary: 'Create a new playbook',
       method: 'POST',
       path: '/playbooks',
-      summary: 'Create a new playbook',
       body: CreatePlaybookAttributesSchema,
       responses: {
         201: ResponseSchema(PlaybookSchema),
       },
     },
     getPlaybook: {
+      summary: 'Get a playbook',
       method: 'GET',
       path: '/playbooks/:playbookId',
-      summary: 'Get a playbook',
       pathParams: z.object({
         playbookId: z.coerce.number().pipe(IDSchema),
       }),
@@ -40,9 +40,9 @@ export const playbookContract = c.router(
       },
     },
     updatePlaybook: {
+      summary: 'Update a playbook',
       method: 'PATCH',
       path: '/playbooks/:playbookId',
-      summary: 'Update a playbook',
       pathParams: z.object({
         playbookId: z.coerce.number().pipe(IDSchema),
       }),
@@ -52,9 +52,9 @@ export const playbookContract = c.router(
       },
     },
     deletePlaybook: {
+      summary: 'Delete a playbook',
       method: 'DELETE',
       path: '/playbooks/:playbookId',
-      summary: 'Delete a playbook',
       pathParams: z.object({
         playbookId: z.coerce.number().pipe(IDSchema),
       }),

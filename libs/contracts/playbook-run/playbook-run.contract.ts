@@ -11,28 +11,35 @@ const c = initContract();
 export const playbookRunContract = c.router(
   {
     listPlaybookRuns: {
-      method: 'GET',
-      path: '/playbook-runs',
       summary: 'List all playbook runs',
+      method: 'GET',
+      path: '/playbooks/:playbookId/runs',
+      pathParams: z.object({
+        playbookId: z.coerce.number().pipe(IDSchema),
+      }),
       query: ListPlaybookRunsAttributesSchema,
       responses: {
         200: ResponseSchema(PlaybookRunSchema.array()),
       },
     },
     createPlaybookRun: {
-      method: 'POST',
-      path: '/playbook-runs',
       summary: 'Create a new playbook run',
+      method: 'POST',
+      path: '/playbooks/:playbookId/runs',
+      pathParams: z.object({
+        playbookId: z.coerce.number().pipe(IDSchema),
+      }),
       body: CreatePlaybookRunAttributesSchema,
       responses: {
         201: ResponseSchema(PlaybookRunSchema),
       },
     },
     getPlaybookRun: {
-      method: 'GET',
-      path: '/playbook-runs/:playbookRunId',
       summary: 'Get a playbook run',
+      method: 'GET',
+      path: '/playbooks/:playbookId/runs/:playbookRunId',
       pathParams: z.object({
+        playbookId: z.string().pipe(IDSchema),
         playbookRunId: z.string().pipe(IDSchema),
       }),
       responses: {
@@ -40,10 +47,11 @@ export const playbookRunContract = c.router(
       },
     },
     deletePlaybookRun: {
-      method: 'DELETE',
-      path: '/playbook-runs/:playbookRunId',
       summary: 'Delete a playbook run',
+      method: 'DELETE',
+      path: '/playbooks/:playbookId/runs/:playbookRunId',
       pathParams: z.object({
+        playbookId: z.string().pipe(IDSchema),
         playbookRunId: z.string().pipe(IDSchema),
       }),
       responses: {

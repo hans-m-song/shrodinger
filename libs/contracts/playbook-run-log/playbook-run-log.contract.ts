@@ -10,13 +10,14 @@ const c = initContract();
 export const playbookRunLogContract = c.router(
   {
     listPlaybookRunLogs: {
-      method: 'GET',
-      path: '/playbook-runs/:playbookRunId/logs',
       summary: 'List logs for a playbook run',
-      query: ListPlaybookRunLogsAttributesSchema,
+      method: 'GET',
+      path: '/playbooks/:playbookId/runs/:playbookRunId/logs',
       pathParams: z.object({
+        playbookId: z.coerce.number().pipe(IDSchema),
         playbookRunId: z.coerce.number().pipe(IDSchema),
       }),
+      query: ListPlaybookRunLogsAttributesSchema,
       responses: {
         200: ResponseSchema(PlaybookRunLogSchema.array()),
       },
