@@ -1,89 +1,136 @@
 {
-  "id": "bc17d9f4-8b55-407b-b2a9-74d4417e6757",
+  "id": "d193ddfc-79f3-49bf-9dc4-92d889b86f78",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.playbook_runs": {
-      "name": "playbook_runs",
+    "public.playbook_run_logs": {
+      "name": "playbook_run_logs",
       "schema": "",
       "columns": {
-        "playbookRunId": {
-          "name": "playbookRunId",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "playbookId": {
-          "name": "playbookId",
+        "playbook_run_id": {
+          "name": "playbook_run_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
-        "status": {
-          "name": "status",
-          "type": "text",
+        "sequence": {
+          "name": "sequence",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "contents": {
           "name": "contents",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "startedAt": {
-          "name": "startedAt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "completedAt": {
-          "name": "completedAt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "version": {
-          "name": "version",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "default": 1
-        },
-        "createdAt": {
-          "name": "createdAt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "deletedAt": {
-          "name": "deletedAt",
-          "type": "integer",
+          "type": "json",
           "primaryKey": false,
           "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "playbook_runs_playbookId_playbooks_playbookId_fk": {
-          "name": "playbook_runs_playbookId_playbooks_playbookId_fk",
+        "playbook_run_logs_playbook_run_id_playbook_runs_playbook_run_id_fk": {
+          "name": "playbook_run_logs_playbook_run_id_playbook_runs_playbook_run_id_fk",
+          "tableFrom": "playbook_run_logs",
+          "tableTo": "playbook_runs",
+          "columnsFrom": [
+            "playbook_run_id"
+          ],
+          "columnsTo": [
+            "playbook_run_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "restrict"
+        }
+      },
+      "compositePrimaryKeys": {
+        "playbook_run_logs_playbook_run_id_sequence_pk": {
+          "name": "playbook_run_logs_playbook_run_id_sequence_pk",
+          "columns": [
+            "playbook_run_id",
+            "sequence"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "public.playbook_runs": {
+      "name": "playbook_runs",
+      "schema": "",
+      "columns": {
+        "playbook_run_id": {
+          "name": "playbook_run_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "playbook_id": {
+          "name": "playbook_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "playbook_version": {
+          "name": "playbook_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "started_at": {
+          "name": "started_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version": {
+          "name": "version",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "1"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "EXTRACT(epoch FROM CURRENT_TIMESTAMP)"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "playbook_runs_playbook_id_playbooks_playbook_id_fk": {
+          "name": "playbook_runs_playbook_id_playbooks_playbook_id_fk",
           "tableFrom": "playbook_runs",
           "tableTo": "playbooks",
           "columnsFrom": [
-            "playbookId"
+            "playbook_id"
           ],
           "columnsTo": [
-            "playbookId"
+            "playbook_id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onDelete": "cascade",
+          "onUpdate": "restrict"
         }
       },
       "compositePrimaryKeys": {},
@@ -94,11 +141,18 @@
       "name": "playbooks",
       "schema": "",
       "columns": {
-        "playbookId": {
-          "name": "playbookId",
+        "playbook_id": {
+          "name": "playbook_id",
           "type": "serial",
           "primaryKey": true,
           "notNull": true
+        },
+        "active": {
+          "name": "active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
         },
         "filepath": {
           "name": "filepath",
@@ -106,34 +160,23 @@
           "primaryKey": false,
           "notNull": true
         },
-        "contents": {
-          "name": "contents",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": true
-        },
         "version": {
           "name": "version",
-          "type": "integer",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": true,
-          "default": 1
+          "default": "1"
         },
-        "createdAt": {
-          "name": "createdAt",
-          "type": "integer",
+        "created_at": {
+          "name": "created_at",
+          "type": "bigint",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "EXTRACT(epoch FROM CURRENT_TIMESTAMP)"
         },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "deletedAt": {
-          "name": "deletedAt",
-          "type": "integer",
+        "updated_at": {
+          "name": "updated_at",
+          "type": "bigint",
           "primaryKey": false,
           "notNull": false
         }
