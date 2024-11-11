@@ -73,7 +73,7 @@ export class PlaybookRunController {
     return tsRestHandler(
       playbookRunContract.getPlaybookRun,
       async ({ params }) => {
-        const result = await this.playbookRunService.readPlaybookRun(params);
+        const result = await this.playbookRunService.getPlaybookRun(params);
         if (!result.ok) {
           this.logger.error(result.error);
 
@@ -90,6 +90,33 @@ export class PlaybookRunController {
         return {
           status: 200,
           body: { data: result.data },
+        };
+      },
+    );
+  }
+
+  @TsRestHandler(playbookRunContract.deletePlaybookRun)
+  async deletePlaybookRun() {
+    return tsRestHandler(
+      playbookRunContract.deletePlaybookRun,
+      async ({ params }) => {
+        const result = await this.playbookRunService.deletePlaybookRun(params);
+        if (!result.ok) {
+          this.logger.error(result.error);
+
+          const error = Errors.as(HttpError)(result.error);
+          if (error) {
+            return error.toResponse() as ServerInferResponses<
+              typeof playbookRunContract.deletePlaybookRun
+            >;
+          }
+
+          return defaultResponse[500];
+        }
+
+        return {
+          status: 204,
+          body: undefined,
         };
       },
     );

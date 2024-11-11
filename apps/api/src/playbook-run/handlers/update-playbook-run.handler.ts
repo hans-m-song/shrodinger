@@ -8,25 +8,34 @@ import {
   PlaybookRun,
   PlaybookRunSchema,
   PlaybookRunStatus,
-  UpdatePlaybookRunAttributes,
 } from '@shrodinger/contracts';
 import { eq } from 'drizzle-orm';
 import { ArgsType, Field, Int } from '@nestjs/graphql';
 
+export type UpdatePlaybookRunCommandArgs = {
+  playbookRunId: number;
+  status?: PlaybookRunStatus;
+  startedAt?: number;
+  completedAt?: number;
+};
+
 @ArgsType()
-export class UpdatePlaybookRunArgs implements UpdatePlaybookRunAttributes {
+export class UpdatePlaybookRunArgs implements UpdatePlaybookRunCommandArgs {
   @Field(() => Int, { nullable: false })
   declare playbookRunId: number;
 
   @Field(() => PlaybookRunStatus, { nullable: true })
   declare status?: PlaybookRunStatus;
 
-  @Field(() => String, { nullable: true })
-  declare contents?: string;
+  @Field(() => Int, { nullable: true })
+  declare startedAt?: number;
+
+  @Field(() => Int, { nullable: true })
+  declare completedAt?: number;
 }
 
 export class UpdatePlaybookRunCommand {
-  constructor(public readonly args: UpdatePlaybookRunAttributes) {}
+  constructor(public readonly args: UpdatePlaybookRunCommandArgs) {}
 }
 
 @Injectable()

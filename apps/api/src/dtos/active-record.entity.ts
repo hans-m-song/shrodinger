@@ -1,8 +1,9 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Field, Int, InterfaceType } from '@nestjs/graphql';
+import { ActiveRecord } from '@shrodinger/contracts';
 import { GraphQLBigInt } from 'graphql-scalars';
 
-@ObjectType('ActiveRecord')
-export class ActiveRecordEntity {
+@InterfaceType('ActiveRecord')
+export abstract class ActiveRecordEntity implements ActiveRecord {
   @Field(() => Int)
   declare version: number;
 

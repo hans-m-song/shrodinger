@@ -5,6 +5,7 @@ import { PlaybookRunLogController } from './playbook-run-log.controller';
 import { PlaybookRunLogService } from './playbook-run-log.service';
 import { PlaybookRunLogResolver } from './playbook-run-log.resolver';
 import { ListPlaybookRunLogsHandler } from './handlers/list-playbook-run-logs.handler';
+import { CreatePlaybookRunLogHandler } from './handlers/create-playbook-run-log.handler';
 
 @Module({
   imports: [DatabaseModule.register(), forwardRef(() => PlaybookRunModule)],
@@ -13,6 +14,7 @@ import { ListPlaybookRunLogsHandler } from './handlers/list-playbook-run-logs.ha
     PlaybookRunLogResolver,
     PlaybookRunLogService,
     ListPlaybookRunLogsHandler,
+    CreatePlaybookRunLogHandler,
   ],
   exports: [PlaybookRunLogService],
 })

@@ -2,9 +2,9 @@ import { z } from 'zod';
 import { commonResponses, IDSchema, ResponseSchema } from '../common';
 import { initContract } from '@ts-rest/core';
 import {
-  ListPlaybooksAttributesSchema,
+  ListPlaybooksQuerySchema,
   PlaybookSchema,
-  CreatePlaybookAttributesSchema,
+  UpdatePlaybookBodySchema,
 } from './playbook.schema';
 
 const c = initContract();
@@ -14,18 +14,9 @@ export const playbookContract = c.router(
       summary: 'List all playbooks',
       method: 'GET',
       path: '/playbooks',
-      query: ListPlaybooksAttributesSchema,
+      query: ListPlaybooksQuerySchema,
       responses: {
         200: ResponseSchema(PlaybookSchema.array()),
-      },
-    },
-    createPlaybook: {
-      summary: 'Create a new playbook',
-      method: 'POST',
-      path: '/playbooks',
-      body: CreatePlaybookAttributesSchema,
-      responses: {
-        201: ResponseSchema(PlaybookSchema),
       },
     },
     getPlaybook: {
@@ -46,20 +37,9 @@ export const playbookContract = c.router(
       pathParams: z.object({
         playbookId: z.coerce.number().pipe(IDSchema),
       }),
-      body: PlaybookSchema,
+      body: UpdatePlaybookBodySchema,
       responses: {
         200: ResponseSchema(PlaybookSchema),
-      },
-    },
-    deletePlaybook: {
-      summary: 'Delete a playbook',
-      method: 'DELETE',
-      path: '/playbooks/:playbookId',
-      pathParams: z.object({
-        playbookId: z.coerce.number().pipe(IDSchema),
-      }),
-      responses: {
-        204: c.noBody(),
       },
     },
   },

@@ -7,23 +7,27 @@ import { Result } from '@shrodinger/core/fp';
 import { PlaybookErrors } from '../playbook.errors';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 
-export class ReadPlaybookQuery {
-  constructor(public readonly args: { playbookId: number }) {}
+export interface GetPlaybookQueryArgs {
+  playbookId: Playbook['playbookId'];
+}
+
+export class GetPlaybookQuery {
+  constructor(public readonly args: GetPlaybookQueryArgs) {}
 }
 
 @Injectable()
-@QueryHandler(ReadPlaybookQuery)
-export class ReadPlaybookQueryHandler
-  implements IQueryHandler<ReadPlaybookQuery>
+@QueryHandler(GetPlaybookQuery)
+export class GetPlaybookQueryHandler
+  implements IQueryHandler<GetPlaybookQuery>
 {
   constructor(
-    @InjectLogger(ReadPlaybookQueryHandler.name)
+    @InjectLogger(GetPlaybookQueryHandler.name)
     private readonly logger: Logger,
     @InjectDatabase()
     private readonly db: Database,
   ) {}
 
-  async execute(query: ReadPlaybookQuery): Promise<Result<Playbook>> {
+  async execute(query: GetPlaybookQuery): Promise<Result<Playbook>> {
     this.logger.debug(query);
 
     const result = await Result.fromPromise(

@@ -2,12 +2,11 @@ import { Test } from '@nestjs/testing';
 import { PlaybookModule } from '../../playbook/playbook.module';
 import { PlaybookResolver } from '../playbook.resolver';
 import { Logger, LoggerModule } from '../../logger';
-import { Database, DatabaseModule, playbooks } from '../../database';
+import { Database, DatabaseModule } from '../../database';
 import {
   DatabaseHelpers,
   createDatabaseHelpers,
 } from '../../../test/database-helpers';
-import { CreatePlaybookAttributes } from '@shrodinger/contracts';
 import { DATABASE_TOKEN } from '../../database/database.constants';
 import { PlaybookRunModule } from '../../playbook-run/playbook-run.module';
 import { databaseConfig } from '../../database/database.config';
@@ -81,23 +80,6 @@ describe('PlaybookResolver', () => {
     await expect(response).resolves.toMatchObject([playbook]);
   });
 
-  it('should create a playbook', async () => {
-    // given
-    const playbook: CreatePlaybookAttributes = {
-      filepath: 'foo.yaml',
-      contents: { foo: 'bar' },
-    };
-
-    // when
-    const response = resolver.createPlaybook(playbook);
-
-    // then
-    await expect(response).resolves.toMatchObject({
-      playbookId: expect.any(Number),
-      ...playbook,
-    });
-  });
-
   it('should update a playbook', async () => {
     // given
     const {
@@ -107,33 +89,14 @@ describe('PlaybookResolver', () => {
     // when
     const response = resolver.updatePlaybook({
       playbookId: playbook.playbookId,
-      contents: { foo: 'bar' },
+      active: true,
     });
 
     // then
     await expect(response).resolves.toMatchObject({
       ...playbook,
-      contents: { foo: 'bar' },
       version: 2,
       updatedAt: expect.any(Number),
     });
-  });
-
-  it('should delete a playbook', async () => {
-    // given
-    const {
-      data: [playbook],
-    } = await helpers.playbooks.seed(10);
-
-    // when
-    const response = resolver.deletePlaybook({
-      playbookId: playbook.playbookId,
-    });
-
-    // then
-    await expect(response).resolves.toBeUndefined();
-    await expect(db.select().from(playbooks)).resolves.not.toMatchObject([
-      playbook,
-    ]);
   });
 });

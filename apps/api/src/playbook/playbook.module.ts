@@ -4,11 +4,11 @@ import { PlaybookService } from './playbook.service';
 import { DatabaseModule } from '../database';
 import { PlaybookRunModule } from '../playbook-run/playbook-run.module';
 import { PlaybookController } from './playbook.controller';
-import { CreatePlaybookCommandHandler } from './handlers/create-playbook.handler';
-import { DeletePlaybookCommandHandler } from './handlers/delete-playbook';
 import { ListPlaybooksQueryHandler } from './handlers/list-playbooks.handler';
-import { ReadPlaybookQueryHandler } from './handlers/read-playbook.handler';
+import { GetPlaybookQueryHandler } from './handlers/get-playbook.handler';
 import { UpdatePlaybookCommandHandler } from './handlers/update-playbook.handler';
+import { CreatePlaybookCommandHandler } from './handlers/create-playbook.handler';
+import { DeletePlaybookCommandHandler } from './handlers/delete-playbook.handler';
 
 @Module({
   imports: [DatabaseModule.register(), forwardRef(() => PlaybookRunModule)],
@@ -18,7 +18,7 @@ import { UpdatePlaybookCommandHandler } from './handlers/update-playbook.handler
     PlaybookResolver,
     ListPlaybooksQueryHandler,
     CreatePlaybookCommandHandler,
-    ReadPlaybookQueryHandler,
+    GetPlaybookQueryHandler,
     UpdatePlaybookCommandHandler,
     DeletePlaybookCommandHandler,
   ],

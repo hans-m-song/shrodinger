@@ -1,16 +1,19 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Playbook } from '@shrodinger/contracts';
-import { GraphQLJSON } from 'graphql-scalars';
 import { ActiveRecordEntity } from '../dtos/active-record.entity';
+import { PlaybookAttributes } from '../database';
 
-@ObjectType('Playbook')
-export class PlaybookEntity extends ActiveRecordEntity implements Playbook {
+@ObjectType('Playbook', { implements: () => [ActiveRecordEntity] })
+export class PlaybookEntity
+  extends ActiveRecordEntity
+  implements Playbook, PlaybookAttributes
+{
   @Field(() => Int)
-  declare playbookId: number;
+  declare playbookId: Playbook['playbookId'];
+
+  @Field(() => Boolean)
+  declare active: Playbook['active'];
 
   @Field(() => String)
-  declare filepath: string;
-
-  @Field(() => GraphQLJSON)
-  declare contents: Record<string, unknown>;
+  declare filepath: Playbook['filepath'];
 }

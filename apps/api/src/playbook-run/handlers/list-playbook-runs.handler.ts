@@ -2,31 +2,48 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectLogger } from '../../logger';
 import { Database, InjectDatabase, playbookRuns } from '../../database';
 import {
-  ListPlaybookRunsAttributes,
+  ListActiveRecords,
+  Pagination,
   PlaybookRun,
   PlaybookRunSchema,
+  PlaybookRunStatus,
+  Range,
 } from '@shrodinger/contracts';
 import { and, eq, gte, lt } from 'drizzle-orm';
 import { Result } from '@shrodinger/core/fp';
 import { PlaybookRunErrors } from '../playbook-run.errors';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { ArgsType, Field, Int } from '@nestjs/graphql';
-import { PaginationArgs } from '../../dtos/pagination.args';
+import { PaginationArgs, RangeArgs } from '../../dtos/common.args';
+
+export type ListPlaybookRunsQueryArgs = Pagination &
+  ListActiveRecords & {
+    playbookId?: number;
+    status?: PlaybookRunStatus;
+    startedAt?: Range;
+    completedAt?: Range;
+  };
 
 @ArgsType()
 export class ListPlaybookRunsArgs
   extends PaginationArgs
-  implements ListPlaybookRunsAttributes
+  implements ListPlaybookRunsQueryArgs
 {
   @Field(() => Int, { nullable: true })
   declare playbookId?: number;
 
-  @Field(() => Int, { nullable: true })
-  declare playbookRunId?: number;
+  @Field(() => PlaybookRunStatus, { nullable: true })
+  declare status?: PlaybookRunStatus;
+
+  @Field(() => RangeArgs, { nullable: true })
+  declare startedAt?: RangeArgs;
+
+  @Field(() => RangeArgs, { nullable: true })
+  declare completedAt?: RangeArgs;
 }
 
 export class ListPlaybookRunsQuery {
-  constructor(public readonly args: ListPlaybookRunsAttributes) {}
+  constructor(public readonly args: ListPlaybookRunsQueryArgs) {}
 }
 
 @Injectable()
@@ -70,6 +87,12 @@ export class ListPlaybookRunsHandler
               : undefined,
             query.args.startedAt?.from
               ? gte(playbookRuns.startedAt, query.args.startedAt.from)
+              : undefined,
+            query.args.startedAt?.to
+              ? gte(playbookRuns.startedAt, query.args.startedAt.to)
+              : undefined,
+            query.args.completedAt?.from
+              ? lt(playbookRuns.completedAt, query.args.completedAt.from)
               : undefined,
             query.args.completedAt?.to
               ? lt(playbookRuns.completedAt, query.args.completedAt.to)

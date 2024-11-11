@@ -7,7 +7,6 @@ import {
   DatabaseHelpers,
   createDatabaseHelpers,
 } from '../../../test/database-helpers';
-import { CreatePlaybookAttributes } from '@shrodinger/contracts';
 import { DATABASE_TOKEN } from '../../database/database.constants';
 import { PlaybookRunModule } from '../../playbook-run/playbook-run.module';
 import { databaseConfig } from '../../database/database.config';
@@ -89,27 +88,6 @@ describe('PlaybookController', () => {
     // then
     expect(response.body).toMatchObject({
       data: playbook,
-    });
-  });
-
-  it('should create a playbook', async () => {
-    // given
-    const playbook: CreatePlaybookAttributes = {
-      filepath: 'foo.yaml',
-      contents: { foo: 'bar' },
-    };
-
-    // when
-    const response = await request(app.getHttpServer())
-      .post('/playbooks')
-      .send(playbook);
-
-    // then
-    expect(response.body).toMatchObject({
-      data: {
-        playbookId: expect.any(Number),
-        ...playbook,
-      },
     });
   });
 });

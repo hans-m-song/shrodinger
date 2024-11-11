@@ -2,31 +2,38 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectLogger } from '../../logger';
 import { Database, InjectDatabase, playbooks } from '../../database';
 import {
-  ListPlaybooksAttributes,
+  ListActiveRecords,
+  Pagination,
   Playbook,
   PlaybookSchema,
 } from '@shrodinger/contracts';
-import { eq } from 'drizzle-orm';
+import { and, eq, gte, lt } from 'drizzle-orm';
 import { Result } from '@shrodinger/core/fp';
 import { PlaybookErrors } from '../playbook.errors';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { ArgsType, Field, Int } from '@nestjs/graphql';
-import { PaginationArgs } from '../../dtos/pagination.args';
+import { ArgsType, Field } from '@nestjs/graphql';
+import { ListActiveRecordEntityArgs } from '../../dtos/common.args';
+
+export type ListPlaybooksQueryArgs = Pagination &
+  ListActiveRecords & {
+    active?: Playbook['active'];
+    filepath?: Playbook['filepath'];
+  };
 
 @ArgsType()
 export class ListPlaybooksArgs
-  extends PaginationArgs
-  implements ListPlaybooksAttributes
+  extends ListActiveRecordEntityArgs
+  implements ListPlaybooksQueryArgs
 {
-  @Field(() => Int, { nullable: true })
-  playbookId?: number;
+  @Field(() => Boolean, { nullable: true })
+  active?: boolean;
 
   @Field(() => String, { nullable: true })
   filepath?: string;
 }
 
 export class ListPlaybooksQuery {
-  constructor(public readonly args: ListPlaybooksAttributes) {}
+  constructor(public readonly args: ListPlaybooksQueryArgs) {}
 }
 
 @Injectable()
@@ -49,9 +56,26 @@ export class ListPlaybooksQueryHandler
         .select()
         .from(playbooks)
         .where(
-          query.args.filepath
-            ? eq(playbooks.filepath, query.args.filepath)
-            : undefined,
+          and(
+            query.args.active
+              ? eq(playbooks.active, query.args.active)
+              : undefined,
+            query.args.filepath
+              ? eq(playbooks.filepath, query.args.filepath)
+              : undefined,
+            query.args.createdAt?.from
+              ? gte(playbooks.createdAt, query.args.createdAt.from)
+              : undefined,
+            query.args.createdAt?.to
+              ? lt(playbooks.createdAt, query.args.createdAt.to)
+              : undefined,
+            query.args.updatedAt?.from
+              ? gte(playbooks.updatedAt, query.args.updatedAt.from)
+              : undefined,
+            query.args.updatedAt?.to
+              ? lt(playbooks.updatedAt, query.args.updatedAt.to)
+              : undefined,
+          ),
         )
         .limit(query.args.limit)
         .offset(query.args.offset),

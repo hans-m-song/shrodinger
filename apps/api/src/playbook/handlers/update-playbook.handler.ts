@@ -4,29 +4,26 @@ import { InjectLogger } from '../../logger';
 import { Database, InjectDatabase, playbooks } from '../../database';
 import { Result } from '@shrodinger/core/fp';
 import { PlaybookErrors } from '../playbook.errors';
-import {
-  Playbook,
-  PlaybookSchema,
-  UpdatePlaybookAttributes,
-} from '@shrodinger/contracts';
+import { Playbook, PlaybookSchema } from '@shrodinger/contracts';
 import { ArgsType, Field, Int } from '@nestjs/graphql';
-import { GraphQLJSON } from 'graphql-scalars';
 import { eq } from 'drizzle-orm';
 
+export type UpdatePlaybookCommandArgs = {
+  playbookId: Playbook['playbookId'];
+  active: Playbook['active'];
+};
+
 @ArgsType()
-export class UpdatePlaybookArgs implements UpdatePlaybookAttributes {
+export class UpdatePlaybookArgs implements UpdatePlaybookCommandArgs {
   @Field(() => Int)
   declare playbookId: number;
 
-  @Field(() => String, { nullable: true })
-  declare filepath?: string;
-
-  @Field(() => GraphQLJSON, { nullable: true })
-  declare contents?: Record<string, unknown>;
+  @Field(() => Boolean)
+  declare active: boolean;
 }
 
 export class UpdatePlaybookCommand {
-  constructor(public readonly args: UpdatePlaybookAttributes) {}
+  constructor(public readonly args: UpdatePlaybookCommandArgs) {}
 }
 
 @Injectable()

@@ -4,25 +4,21 @@ import { InjectLogger } from '../../logger';
 import { Database, InjectDatabase, playbooks } from '../../database';
 import { Result } from '@shrodinger/core/fp';
 import { PlaybookErrors } from '../playbook.errors';
-import {
-  CreatePlaybookAttributes,
-  Playbook,
-  PlaybookSchema,
-} from '@shrodinger/contracts';
+import { Playbook, PlaybookSchema } from '@shrodinger/contracts';
 import { ArgsType, Field } from '@nestjs/graphql';
-import { GraphQLJSON } from 'graphql-scalars';
+
+export type CreatePlaybookCommandArgs = {
+  filepath: Playbook['filepath'];
+};
 
 @ArgsType()
-export class CreatePlaybookArgs implements CreatePlaybookAttributes {
+export class CreatePlaybookArgs implements CreatePlaybookCommandArgs {
   @Field(() => String)
   declare filepath: string;
-
-  @Field(() => GraphQLJSON)
-  declare contents: Record<string, unknown>;
 }
 
 export class CreatePlaybookCommand {
-  constructor(public readonly args: CreatePlaybookAttributes) {}
+  constructor(public readonly args: CreatePlaybookCommandArgs) {}
 }
 
 @Injectable()

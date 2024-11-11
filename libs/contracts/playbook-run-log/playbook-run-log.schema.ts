@@ -1,21 +1,11 @@
 import { z } from 'zod';
-import { RangeSchema, IDSchema, PaginationSchema } from '../common';
+import { IDSchema } from '../common';
+import { AnsibleLogBaseSchema } from '../ansible';
 
 export const PlaybookRunLogSchema = z.object({
   playbookRunId: IDSchema,
   sequence: z.number().int().min(0),
-  contents: z.record(z.unknown()),
+  contents: AnsibleLogBaseSchema.passthrough(),
 });
 
 export type PlaybookRunLog = z.infer<typeof PlaybookRunLogSchema>;
-
-export const ListPlaybookRunLogsAttributesSchema = z
-  .object({
-    playbookRunId: PlaybookRunLogSchema.shape.playbookRunId,
-    sequence: RangeSchema.optional(),
-  })
-  .merge(PaginationSchema);
-
-export type ListPlaybookRunLogsAttributes = z.infer<
-  typeof ListPlaybookRunLogsAttributesSchema
->;

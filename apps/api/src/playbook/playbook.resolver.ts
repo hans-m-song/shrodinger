@@ -1,6 +1,8 @@
 import {
   Args,
+  ArgsType,
   Mutation,
+  OmitType,
   Parent,
   Query,
   ResolveField,
@@ -14,10 +16,14 @@ import { PlaybookRunService } from '../playbook-run/playbook-run.service';
 import { PlaybookEntity } from './playbook.entity';
 import { PlaybookService } from './playbook.service';
 import { ListPlaybooksArgs } from './handlers/list-playbooks.handler';
-import { CreatePlaybookArgs } from './handlers/create-playbook.handler';
 import { UpdatePlaybookArgs } from './handlers/update-playbook.handler';
-import { DeletePlaybookArgs } from './handlers/delete-playbook';
-import { PaginationArgs } from '../dtos/pagination.args';
+import { ListPlaybookRunsArgs } from '../playbook-run/handlers/list-playbook-runs.handler';
+
+@ArgsType()
+class ListPlaybookRunsArgsWithoutRunbookId extends OmitType(
+  ListPlaybookRunsArgs,
+  ['playbookId'],
+) {}
 
 @Resolver(() => PlaybookEntity)
 export class PlaybookResolver {
@@ -50,29 +56,13 @@ export class PlaybookResolver {
     @Parent()
     { playbookId }: PlaybookEntity,
     @Args()
-    args: PaginationArgs,
+    args: ListPlaybookRunsArgsWithoutRunbookId,
   ): Promise<PlaybookRun[]> {
     const result = await this.playbookRunService.listPlaybookRuns({
       ...args,
       playbookId,
     });
 
-    if (!result.ok) {
-      this.logger.error(result.error);
-      throw new GraphQLError(result.error.message, {
-        extensions: { code: result.error.name },
-      });
-    }
-
-    return result.data;
-  }
-
-  @Mutation(() => PlaybookEntity)
-  async createPlaybook(
-    @Args()
-    args: CreatePlaybookArgs,
-  ): Promise<Playbook> {
-    const result = await this.playbookService.createPlaybook(args);
     if (!result.ok) {
       this.logger.error(result.error);
       throw new GraphQLError(result.error.message, {
@@ -97,19 +87,5 @@ export class PlaybookResolver {
     }
 
     return result.data;
-  }
-
-  @Mutation(() => PlaybookEntity, { nullable: true })
-  async deletePlaybook(
-    @Args()
-    args: DeletePlaybookArgs,
-  ): Promise<void> {
-    const result = await this.playbookService.deletePlaybook(args);
-    if (!result.ok) {
-      this.logger.error(result.error);
-      throw new GraphQLError(result.error.message, {
-        extensions: { code: result.error.name },
-      });
-    }
   }
 }

@@ -2,28 +2,37 @@ import { InjectLogger } from '../../logger';
 import { Injectable, Logger } from '@nestjs/common';
 import { Database, InjectDatabase, playbookRunLogs } from '../../database';
 import {
-  ListPlaybookRunLogsAttributes,
+  Pagination,
   PlaybookRunLog,
   PlaybookRunLogSchema,
+  Range,
 } from '@shrodinger/contracts';
 import { and, asc, eq, gte, lt } from 'drizzle-orm';
 import { Result } from '@shrodinger/core/fp';
 import { PlaybookRunLogErrors } from '../playbook-run-log.errors';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { ArgsType, Field, Int } from '@nestjs/graphql';
-import { PaginationArgs } from '../../dtos/pagination.args';
+import { PaginationArgs, RangeArgs } from '../../dtos/common.args';
+
+export type ListPlaybookRunLogsQueryArgs = Pagination & {
+  playbookRunId: number;
+  sequence?: Range;
+};
 
 @ArgsType()
 export class ListPlaybookRunLogsArgs
   extends PaginationArgs
-  implements ListPlaybookRunLogsAttributes
+  implements ListPlaybookRunLogsQueryArgs
 {
   @Field(() => Int)
   declare playbookRunId: number;
+
+  @Field(() => RangeArgs, { nullable: true })
+  declare sequence?: Range;
 }
 
 export class ListPlaybookRunLogsQuery {
-  constructor(public readonly args: ListPlaybookRunLogsAttributes) {}
+  constructor(public readonly args: ListPlaybookRunLogsQueryArgs) {}
 }
 
 @Injectable()

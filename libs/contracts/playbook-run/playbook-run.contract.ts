@@ -2,9 +2,9 @@ import { z } from 'zod';
 import { commonResponses, IDSchema, ResponseSchema } from '../common';
 import { initContract } from '@ts-rest/core';
 import {
-  ListPlaybookRunsAttributesSchema,
+  CreatePlaybookRunBodySchema,
+  ListPlaybookRunsQuerySchema,
   PlaybookRunSchema,
-  CreatePlaybookRunAttributesSchema,
 } from './playbook-run.schema';
 
 const c = initContract();
@@ -17,7 +17,7 @@ export const playbookRunContract = c.router(
       pathParams: z.object({
         playbookId: z.coerce.number().pipe(IDSchema),
       }),
-      query: ListPlaybookRunsAttributesSchema,
+      query: ListPlaybookRunsQuerySchema,
       responses: {
         200: ResponseSchema(PlaybookRunSchema.array()),
       },
@@ -27,9 +27,9 @@ export const playbookRunContract = c.router(
       method: 'POST',
       path: '/playbooks/:playbookId/runs',
       pathParams: z.object({
-        playbookId: z.coerce.number().pipe(IDSchema),
+        playbookId: z.coerce.number().pipe(PlaybookRunSchema.shape.playbookId),
       }),
-      body: CreatePlaybookRunAttributesSchema,
+      body: CreatePlaybookRunBodySchema,
       responses: {
         201: ResponseSchema(PlaybookRunSchema),
       },
@@ -39,8 +39,10 @@ export const playbookRunContract = c.router(
       method: 'GET',
       path: '/playbooks/:playbookId/runs/:playbookRunId',
       pathParams: z.object({
-        playbookId: z.string().pipe(IDSchema),
-        playbookRunId: z.string().pipe(IDSchema),
+        playbookId: z.coerce.number().pipe(PlaybookRunSchema.shape.playbookId),
+        playbookRunId: z.coerce
+          .number()
+          .pipe(PlaybookRunSchema.shape.playbookRunId),
       }),
       responses: {
         200: ResponseSchema(PlaybookRunSchema),
@@ -51,8 +53,10 @@ export const playbookRunContract = c.router(
       method: 'DELETE',
       path: '/playbooks/:playbookId/runs/:playbookRunId',
       pathParams: z.object({
-        playbookId: z.string().pipe(IDSchema),
-        playbookRunId: z.string().pipe(IDSchema),
+        playbookId: z.coerce.number().pipe(PlaybookRunSchema.shape.playbookId),
+        playbookRunId: z.coerce
+          .number()
+          .pipe(PlaybookRunSchema.shape.playbookRunId),
       }),
       responses: {
         204: c.noBody(),

@@ -18,49 +18,34 @@ export const VersionSchema = z
   .min(1)
   .describe('Record number of changes');
 
-export const EpochRangeSchema = z
-  .object({
-    from: EpochSchema.optional(),
-    to: EpochSchema.optional(),
-  })
-  .describe('Range of numbers, "from" is inclusive, "to" is exclusive')
-  .refine(
-    ({ from, to }) => {
-      if (!from || !to) {
-        return true;
-      }
-
-      return from < to;
-    },
-    { message: 'from must be less than to' },
-  );
-export const RangeSchema = z
-  .object({
-    from: z.number().int().min(0).optional(),
-    to: z.number().int().min(1).optional(),
-  })
-  .describe('Range of numbers, "from" is inclusive, "to" is exclusive')
-  .refine(
-    ({ from, to }) => {
-      if (!from || !to) {
-        return true;
-      }
-
-      return from < to;
-    },
-    { message: 'from must be less than to' },
-  );
-
 export const PaginationSchema = z.object({
   limit: z.coerce.number().int().min(1).default(10),
   offset: z.coerce.number().int().min(0).default(0),
 });
+
+export type Pagination = z.infer<typeof PaginationSchema>;
 
 export const ActiveRecordSchema = z.object({
   version: z.number().int().min(1),
   createdAt: EpochSchema,
   updatedAt: EpochSchema,
 });
+
+export type ActiveRecord = z.infer<typeof ActiveRecordSchema>;
+
+export const RangeSchema = z.object({
+  from: z.coerce.number().optional(),
+  to: z.coerce.number().optional(),
+});
+
+export type Range = z.infer<typeof RangeSchema>;
+
+export const ListActiveRecordsSchema = z.object({
+  createdAt: RangeSchema.optional(),
+  updatedAt: RangeSchema.optional(),
+});
+
+export type ListActiveRecords = z.infer<typeof ListActiveRecordsSchema>;
 
 export const ResponseSchema = (data: ZodType) =>
   z.object({

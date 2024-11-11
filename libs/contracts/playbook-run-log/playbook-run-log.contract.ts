@@ -1,10 +1,13 @@
 import { initContract } from '@ts-rest/core';
-import { commonResponses, IDSchema, ResponseSchema } from '../common';
 import {
-  ListPlaybookRunLogsAttributesSchema,
-  PlaybookRunLogSchema,
-} from './playbook-run-log.schema';
+  commonResponses,
+  IDSchema,
+  PaginationSchema,
+  RangeSchema,
+  ResponseSchema,
+} from '../common';
 import { z } from 'zod';
+import { PlaybookRunLogSchema } from './playbook-run-log.schema';
 
 const c = initContract();
 export const playbookRunLogContract = c.router(
@@ -17,7 +20,11 @@ export const playbookRunLogContract = c.router(
         playbookId: z.coerce.number().pipe(IDSchema),
         playbookRunId: z.coerce.number().pipe(IDSchema),
       }),
-      query: ListPlaybookRunLogsAttributesSchema,
+      query: z
+        .object({
+          sequence: RangeSchema.optional(),
+        })
+        .merge(PaginationSchema),
       responses: {
         200: ResponseSchema(PlaybookRunLogSchema.array()),
       },

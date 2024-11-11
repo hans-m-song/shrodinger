@@ -6,24 +6,35 @@ import { eq } from 'drizzle-orm';
 import { Result } from '@shrodinger/core/fp';
 import { PlaybookRunErrors } from '../playbook-run.errors';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { ArgsType, Field, Int } from '@nestjs/graphql';
 
-export class ReadPlaybookRunQuery {
-  constructor(public readonly args: { playbookRunId: number }) {}
+export type GetPlaybookRunQueryArgs = {
+  playbookRunId: PlaybookRun['playbookRunId'];
+};
+
+@ArgsType()
+export class GetPlaybookRunArgs implements GetPlaybookRunQueryArgs {
+  @Field(() => Int)
+  declare playbookRunId: number;
+}
+
+export class GetPlaybookRunQuery {
+  constructor(public readonly args: GetPlaybookRunQueryArgs) {}
 }
 
 @Injectable()
-@QueryHandler(ReadPlaybookRunQuery)
-export class ReadPlaybookRunHandler
-  implements IQueryHandler<ReadPlaybookRunQuery>
+@QueryHandler(GetPlaybookRunQuery)
+export class GetPlaybookRunHandler
+  implements IQueryHandler<GetPlaybookRunQuery>
 {
   constructor(
-    @InjectLogger(ReadPlaybookRunHandler.name)
+    @InjectLogger(GetPlaybookRunHandler.name)
     private readonly logger: Logger,
     @InjectDatabase()
     private readonly db: Database,
   ) {}
 
-  async execute(query: ReadPlaybookRunQuery): Promise<Result<PlaybookRun>> {
+  async execute(query: GetPlaybookRunQuery): Promise<Result<PlaybookRun>> {
     this.logger.debug(query);
 
     const result = await Result.fromPromise(

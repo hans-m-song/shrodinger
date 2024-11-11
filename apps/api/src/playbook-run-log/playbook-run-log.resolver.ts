@@ -38,7 +38,7 @@ export class PlaybookRunLogResolver {
     @Parent()
     { playbookRunId }: PlaybookRunLogEntity,
   ): Promise<PlaybookRun> {
-    const result = await this.playbookRunService.readPlaybookRun({
+    const result = await this.playbookRunService.getPlaybookRun({
       playbookRunId,
     });
     if (!result.ok) {

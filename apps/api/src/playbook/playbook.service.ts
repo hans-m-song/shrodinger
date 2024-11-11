@@ -6,7 +6,7 @@ import {
 import {
   DeletePlaybookCommand,
   DeletePlaybookCommandHandler,
-} from './handlers/delete-playbook';
+} from './handlers/delete-playbook.handler';
 import {
   CreatePlaybookCommand,
   CreatePlaybookCommandHandler,
@@ -16,16 +16,16 @@ import {
   UpdatePlaybookCommandHandler,
 } from './handlers/update-playbook.handler';
 import {
-  ReadPlaybookQueryHandler,
-  ReadPlaybookQuery,
-} from './handlers/read-playbook.handler';
+  GetPlaybookQuery,
+  GetPlaybookQueryHandler,
+} from './handlers/get-playbook.handler';
 
 @Injectable()
 export class PlaybookService {
   constructor(
     private readonly listPlaybooksRunsQuery: ListPlaybooksQueryHandler,
     private readonly createPlaybookCommand: CreatePlaybookCommandHandler,
-    private readonly readPlaybookQuery: ReadPlaybookQueryHandler,
+    private readonly getPlaybookQuery: GetPlaybookQueryHandler,
     private readonly updatePlaybookCommand: UpdatePlaybookCommandHandler,
     private readonly deletePlaybookCommand: DeletePlaybookCommandHandler,
   ) {}
@@ -44,9 +44,9 @@ export class PlaybookService {
     return this.createPlaybookCommand.execute(command);
   }
 
-  async readPlaybook(args: ConstructorParameters<typeof ReadPlaybookQuery>[0]) {
-    const query = new ReadPlaybookQuery(args);
-    return this.readPlaybookQuery.execute(query);
+  async getPlaybook(args: ConstructorParameters<typeof GetPlaybookQuery>[0]) {
+    const query = new GetPlaybookQuery(args);
+    return this.getPlaybookQuery.execute(query);
   }
 
   async updatePlaybook(

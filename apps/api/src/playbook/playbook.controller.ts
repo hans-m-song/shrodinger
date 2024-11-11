@@ -38,58 +38,40 @@ export class PlaybookController {
     });
   }
 
-  @TsRestHandler(playbookContract.createPlaybook)
-  async createPlaybook() {
-    return tsRestHandler(playbookContract.createPlaybook, async ({ body }) => {
-      const result = await this.playbookService.createPlaybook(body);
-      if (!result.ok) {
-        this.logger.error(result.error);
-
-        const error = Errors.as(HttpError)(result.error);
-        if (error) {
-          return error.toResponse() as ServerInferResponses<
-            typeof playbookContract.createPlaybook
-          >;
-        }
-
-        return defaultResponse[500];
-      }
-
-      return {
-        status: 200,
-        body: { data: result.data },
-      };
-    });
-  }
-
   @TsRestHandler(playbookContract.updatePlaybook)
   async updatePlaybook() {
-    return tsRestHandler(playbookContract.updatePlaybook, async ({ body }) => {
-      const result = await this.playbookService.updatePlaybook(body);
-      if (!result.ok) {
-        this.logger.error(result.error);
+    return tsRestHandler(
+      playbookContract.updatePlaybook,
+      async ({ params, body }) => {
+        const result = await this.playbookService.updatePlaybook({
+          playbookId: params.playbookId,
+          ...body,
+        });
+        if (!result.ok) {
+          this.logger.error(result.error);
 
-        const error = Errors.as(HttpError)(result.error);
-        if (error) {
-          return error.toResponse() as ServerInferResponses<
-            typeof playbookContract.updatePlaybook
-          >;
+          const error = Errors.as(HttpError)(result.error);
+          if (error) {
+            return error.toResponse() as ServerInferResponses<
+              typeof playbookContract.updatePlaybook
+            >;
+          }
+
+          return defaultResponse[500];
         }
 
-        return defaultResponse[500];
-      }
-
-      return {
-        status: 200,
-        body: { data: result.data },
-      };
-    });
+        return {
+          status: 200,
+          body: { data: result.data },
+        };
+      },
+    );
   }
 
   @TsRestHandler(playbookContract.getPlaybook)
   async getPlaybook() {
     return tsRestHandler(playbookContract.getPlaybook, async ({ params }) => {
-      const result = await this.playbookService.readPlaybook(params);
+      const result = await this.playbookService.getPlaybook(params);
       if (!result.ok) {
         this.logger.error(result.error);
 

@@ -3,8 +3,9 @@ import {
   ActiveRecordSchema,
   EpochSchema,
   IDSchema,
+  ListActiveRecordsSchema,
   PaginationSchema,
-  EpochRangeSchema,
+  RangeSchema,
 } from '../common';
 
 export enum PlaybookRunStatus {
@@ -13,6 +14,13 @@ export enum PlaybookRunStatus {
   Completed = 'completed',
   Failed = 'failed',
 }
+
+export const nextPlaybookRunStatus = {
+  [PlaybookRunStatus.Pending]: PlaybookRunStatus.Running,
+  [PlaybookRunStatus.Running]: PlaybookRunStatus.Completed,
+  [PlaybookRunStatus.Completed]: PlaybookRunStatus.Completed,
+  [PlaybookRunStatus.Failed]: PlaybookRunStatus.Failed,
+};
 
 export const PlaybookRunStatusValues = [
   PlaybookRunStatus.Pending,
@@ -27,6 +35,7 @@ export const PlaybookRunSchema = z
   .object({
     playbookRunId: IDSchema,
     playbookId: IDSchema,
+    playbookVersion: ActiveRecordSchema.shape.version,
     status: PlaybookRunStatusSchema,
     startedAt: EpochSchema.nullable(),
     completedAt: EpochSchema.nullable(),
@@ -35,37 +44,24 @@ export const PlaybookRunSchema = z
 
 export type PlaybookRun = z.infer<typeof PlaybookRunSchema>;
 
-export const ListPlaybookRunsAttributesSchema = z
+export const ListPlaybookRunsQuerySchema = z
   .object({
-    status: PlaybookRunStatusSchema.optional(),
-    playbookId: IDSchema.optional(),
-    createdAt: EpochRangeSchema.optional(),
-    updatedAt: EpochRangeSchema.optional(),
-    startedAt: EpochRangeSchema.optional(),
-    completedAt: EpochRangeSchema.optional(),
+    status: z.coerce.string().pipe(PlaybookRunSchema.shape.status).optional(),
+    playbookId: z.coerce
+      .number()
+      .pipe(PlaybookRunSchema.shape.playbookId)
+      .optional(),
+    startedAt: RangeSchema.optional(),
+    completedAt: RangeSchema.optional(),
   })
-  .merge(PaginationSchema);
+  .merge(PaginationSchema)
+  .merge(ListActiveRecordsSchema);
 
-export type ListPlaybookRunsAttributes = z.infer<
-  typeof ListPlaybookRunsAttributesSchema
->;
+export type ListPlaybookRunsQuery = z.infer<typeof ListPlaybookRunsQuerySchema>;
 
-export const CreatePlaybookRunAttributesSchema = z.object({
+export const CreatePlaybookRunBodySchema = z.object({
   playbookId: PlaybookRunSchema.shape.playbookId,
-  status: PlaybookRunSchema.shape.status.optional(),
+  playbookVersion: PlaybookRunSchema.shape.playbookVersion,
 });
 
-export type CreatePlaybookRunAttributes = z.infer<
-  typeof CreatePlaybookRunAttributesSchema
->;
-
-export const UpdatePlaybookRunAttributesSchema = z.object({
-  playbookRunId: PlaybookRunSchema.shape.playbookRunId,
-  status: PlaybookRunSchema.shape.status.optional(),
-  startedAt: PlaybookRunSchema.shape.startedAt.optional(),
-  updatedAt: PlaybookRunSchema.shape.updatedAt.optional(),
-});
-
-export type UpdatePlaybookRunAttributes = z.infer<
-  typeof UpdatePlaybookRunAttributesSchema
->;
+export type CreatePlaybookRunBody = z.infer<typeof CreatePlaybookRunBodySchema>;

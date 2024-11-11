@@ -24,7 +24,7 @@ export class ValidationError extends CoreError {
       },
       context: {
         input,
-        issues: cause.flatten().fieldErrors,
+        issues: cause.issues,
         ...context,
       },
     });

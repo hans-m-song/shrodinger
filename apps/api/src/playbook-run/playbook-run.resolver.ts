@@ -5,9 +5,11 @@ import {
   Args,
   Mutation,
   Parent,
+  OmitType,
   Query,
   ResolveField,
   Resolver,
+  ArgsType,
 } from '@nestjs/graphql';
 import { Playbook, PlaybookRun, PlaybookRunLog } from '@shrodinger/contracts';
 import { GraphQLError } from 'graphql';
@@ -15,10 +17,16 @@ import { PlaybookRunEntity } from './playbook-run.entity';
 import { PlaybookRunService } from './playbook-run.service';
 import { PlaybookRunLogEntity } from '../playbook-run-log/playbook-run-log.entity';
 import { PlaybookRunLogService } from '../playbook-run-log/playbook-run-log.service';
-import { PaginationArgs } from '../dtos/pagination.args';
 import { CreatePlaybookRunArgs } from './handlers/create-playbook-run.handler';
-import { DeletePlaybookRunArgs } from './handlers/delete-playbook-run';
+import { DeletePlaybookRunArgs } from './handlers/delete-playbook-run.handler';
 import { ListPlaybookRunsArgs } from './handlers/list-playbook-runs.handler';
+import { ListPlaybookRunLogsArgs } from '../playbook-run-log/handlers/list-playbook-run-logs.handler';
+
+@ArgsType()
+class ListPlaybookRunLogsArgsWithoutPlaybookRunId extends OmitType(
+  ListPlaybookRunLogsArgs,
+  ['playbookRunId'],
+) {}
 
 @Resolver(() => PlaybookRunEntity)
 export class PlaybookRunResolver {
@@ -51,7 +59,7 @@ export class PlaybookRunResolver {
     @Parent()
     { playbookId }: PlaybookRunEntity,
   ): Promise<Playbook> {
-    const result = await this.playbookService.readPlaybook({ playbookId });
+    const result = await this.playbookService.getPlaybook({ playbookId });
     if (!result.ok) {
       this.logger.error(result.error);
       throw new GraphQLError(result.error.message, {
@@ -67,7 +75,7 @@ export class PlaybookRunResolver {
     @Parent()
     { playbookRunId }: PlaybookRunEntity,
     @Args()
-    args: PaginationArgs,
+    args: ListPlaybookRunLogsArgsWithoutPlaybookRunId,
   ): Promise<PlaybookRunLog[]> {
     const result = await this.playbookRunLogService.listPlaybookRunLogs({
       ...args,

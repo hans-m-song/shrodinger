@@ -4,28 +4,25 @@ import { InjectLogger } from '../../logger';
 import { Database, InjectDatabase, playbookRuns } from '../../database';
 import { Result } from '@shrodinger/core/fp';
 import { PlaybookRunErrors } from '../playbook-run.errors';
-import {
-  CreatePlaybookRunAttributes,
-  PlaybookRun,
-  PlaybookRunSchema,
-  PlaybookRunStatus,
-} from '@shrodinger/contracts';
+import { PlaybookRun, PlaybookRunSchema } from '@shrodinger/contracts';
 import { ArgsType, Field, Int } from '@nestjs/graphql';
 
+export type CreatePlaybookRunCommandArgs = {
+  playbookId: PlaybookRun['playbookId'];
+  playbookVersion: PlaybookRun['playbookVersion'];
+};
+
 @ArgsType()
-export class CreatePlaybookRunArgs implements CreatePlaybookRunAttributes {
+export class CreatePlaybookRunArgs implements CreatePlaybookRunCommandArgs {
   @Field(() => Int)
   declare playbookId: number;
 
-  @Field(() => PlaybookRunStatus, { defaultValue: PlaybookRunStatus.Pending })
-  declare status: PlaybookRunStatus;
-
-  @Field(() => String, { defaultValue: '{}' })
-  declare contents: string;
+  @Field(() => Int)
+  declare playbookVersion: number;
 }
 
 export class CreatePlaybookRunCommand {
-  constructor(public readonly args: CreatePlaybookRunAttributes) {}
+  constructor(public readonly args: CreatePlaybookRunCommandArgs) {}
 }
 
 @Injectable()
