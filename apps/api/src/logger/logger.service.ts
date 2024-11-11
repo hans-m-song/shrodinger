@@ -4,13 +4,24 @@ import { Logger as NestjsLogger, PinoLogger } from 'nestjs-pino';
 
 @Injectable()
 export class Logger implements LoggerService {
-  instance: NestjsLogger;
+  instance: LoggerService;
+
+  private static binding?: LoggerService;
+
+  static bind(logger: LoggerService) {
+    this.binding = logger;
+  }
 
   static create(context = '') {
     return new Logger(context);
   }
 
   constructor(readonly context: string) {
+    if (Logger.binding) {
+      this.instance = Logger.binding;
+      return;
+    }
+
     this.instance = new NestjsLogger(
       new PinoLogger({
         renameContext: 'name',
@@ -59,11 +70,11 @@ export class Logger implements LoggerService {
   }
 
   verbose(message: string | object, ...optionalParams: any[]) {
-    this.instance.verbose(message, ...optionalParams);
+    this.instance.verbose?.(message, ...optionalParams);
   }
 
   debug(message: string | object, ...optionalParams: any[]) {
-    this.instance.debug(message, ...optionalParams);
+    this.instance.debug?.(message, ...optionalParams);
   }
 
   log(message: string | object, ...optionalParams: any[]) {
@@ -79,6 +90,6 @@ export class Logger implements LoggerService {
   }
 
   fatal(message: string | object, ...optionalParams: any[]) {
-    this.instance.fatal(message, ...optionalParams);
+    this.instance.fatal?.(message, ...optionalParams);
   }
 }
