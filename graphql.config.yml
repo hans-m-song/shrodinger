@@ -1,0 +1,6 @@
+schema: apps/api/schema.graphql
+documents: apps/web/src/**/*.{ts,tsx}
+extensions:
+  endpoints:
+    default:
+      url: http://localhost:3000/graphql

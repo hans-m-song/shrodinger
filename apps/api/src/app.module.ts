@@ -17,7 +17,7 @@ const externalModules = [
   DatabaseModule.register(),
   GraphQLModule.forRoot({
     driver: ApolloDriver,
-    autoSchemaFile: join(__dirname, 'apps/api/src/schema.graphql'),
+    autoSchemaFile: join(process.cwd(), 'schema.graphql'),
     debug: init.meta.debug,
     includeStacktraceInErrorResponses: init.meta.debug,
     hideSchemaDetailsFromClientErrors: !init.meta.debug,
