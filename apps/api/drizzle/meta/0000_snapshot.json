@@ -1,5 +1,5 @@
 {
-  "id": "d193ddfc-79f3-49bf-9dc4-92d889b86f78",
+  "id": "85e29788-ec50-4608-b77e-15374f25b58f",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -114,7 +114,8 @@
           "name": "updated_at",
           "type": "bigint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true,
+          "default": "EXTRACT(epoch FROM CURRENT_TIMESTAMP)"
         }
       },
       "indexes": {},
@@ -178,7 +179,8 @@
           "name": "updated_at",
           "type": "bigint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true,
+          "default": "EXTRACT(epoch FROM CURRENT_TIMESTAMP)"
         }
       },
       "indexes": {},

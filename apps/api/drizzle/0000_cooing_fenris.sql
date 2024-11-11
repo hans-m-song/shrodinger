@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "playbook_runs" (
 	"completed_at" integer,
 	"version" bigint DEFAULT 1 NOT NULL,
 	"created_at" bigint DEFAULT EXTRACT(epoch FROM CURRENT_TIMESTAMP) NOT NULL,
-	"updated_at" bigint
+	"updated_at" bigint DEFAULT EXTRACT(epoch FROM CURRENT_TIMESTAMP) NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "playbooks" (
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS "playbooks" (
 	"filepath" text NOT NULL,
 	"version" bigint DEFAULT 1 NOT NULL,
 	"created_at" bigint DEFAULT EXTRACT(epoch FROM CURRENT_TIMESTAMP) NOT NULL,
-	"updated_at" bigint,
+	"updated_at" bigint DEFAULT EXTRACT(epoch FROM CURRENT_TIMESTAMP) NOT NULL,
 	CONSTRAINT "playbooks_filepath_unique" UNIQUE("filepath")
 );
 --> statement-breakpoint

@@ -19,6 +19,8 @@ const activeRecord = {
 
   updatedAt: t
     .bigint('updated_at', { mode: 'number' })
+    .notNull()
+    .default(sql`EXTRACT(epoch FROM CURRENT_TIMESTAMP)`)
     .$onUpdateFn(() => Date.now()),
 };
 
