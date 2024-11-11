@@ -1,0 +1,2632 @@
+[
+  {
+    "sequence": 0,
+    "contents": {
+      "_event": "v2_playbook_on_play_start",
+      "_timestamp": "2024-11-02T09:02:46.480378Z",
+      "play": {
+        "duration": {
+          "start": "2024-11-02T09:02:46.479214Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000004",
+        "name": "Base",
+        "path": "/iac/ansible/playbooks/base/main.yaml:2"
+      },
+      "tasks": []
+    }
+  },
+  {
+    "sequence": 1,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:02:46.497645Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:02:46.497628Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000029",
+        "name": "Gathering Facts",
+        "path": "/iac/ansible/playbooks/base/main.yaml:2"
+      }
+    }
+  },
+  {
+    "sequence": 2,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:02:50.401679Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_override": true,
+          "action": "gather_facts",
+          "ansible_facts": {},
+          "changed": false,
+          "deprecations": [],
+          "warnings": [
+            "Platform linux on host wheatley.local is using the discovered Python interpreter at /usr/bin/python3.11, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.17/reference_appendices/interpreter_discovery.html for more information."
+          ]
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:02:50.401635Z",
+          "start": "2024-11-02T09:02:46.497628Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000029",
+        "name": "Gathering Facts",
+        "path": "/iac/ansible/playbooks/base/main.yaml:2"
+      }
+    }
+  },
+  {
+    "sequence": 3,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:02:50.926052Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_override": true,
+          "action": "gather_facts",
+          "ansible_facts": {},
+          "changed": false,
+          "deprecations": [],
+          "warnings": [
+            "Platform linux on host gman.local is using the discovered Python interpreter at /usr/bin/python3.11, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.17/reference_appendices/interpreter_discovery.html for more information."
+          ]
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:02:50.926012Z",
+          "start": "2024-11-02T09:02:46.497628Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000029",
+        "name": "Gathering Facts",
+        "path": "/iac/ansible/playbooks/base/main.yaml:2"
+      }
+    }
+  },
+  {
+    "sequence": 4,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:02:52.142232Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_override": true,
+          "action": "gather_facts",
+          "ansible_facts": {},
+          "changed": false,
+          "deprecations": [],
+          "warnings": [
+            "Platform linux on host glados.local is using the discovered Python interpreter at /usr/bin/python3.10, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.17/reference_appendices/interpreter_discovery.html for more information."
+          ]
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:02:52.142190Z",
+          "start": "2024-11-02T09:02:46.497628Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000029",
+        "name": "Gathering Facts",
+        "path": "/iac/ansible/playbooks/base/main.yaml:2"
+      }
+    }
+  },
+  {
+    "sequence": 5,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:02:52.168495Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:02:52.168481Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000006",
+        "name": "Debug",
+        "path": "/iac/ansible/playbooks/base/main.yaml:10"
+      }
+    }
+  },
+  {
+    "sequence": 6,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:02:52.186663Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_always": true,
+          "action": "ansible.builtin.debug",
+          "changed": false,
+          "msg": "gman - Debian"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:02:52.186524Z",
+          "start": "2024-11-02T09:02:52.168481Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000006",
+        "name": "Debug",
+        "path": "/iac/ansible/playbooks/base/main.yaml:10"
+      }
+    }
+  },
+  {
+    "sequence": 7,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:02:52.189943Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_always": true,
+          "action": "ansible.builtin.debug",
+          "changed": false,
+          "msg": "wheatley - Debian"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:02:52.189880Z",
+          "start": "2024-11-02T09:02:52.168481Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000006",
+        "name": "Debug",
+        "path": "/iac/ansible/playbooks/base/main.yaml:10"
+      }
+    }
+  },
+  {
+    "sequence": 8,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:02:52.196585Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_always": true,
+          "action": "ansible.builtin.debug",
+          "changed": false,
+          "msg": "glados - Debian"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:02:52.196554Z",
+          "start": "2024-11-02T09:02:52.168481Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000006",
+        "name": "Debug",
+        "path": "/iac/ansible/playbooks/base/main.yaml:10"
+      }
+    }
+  },
+  {
+    "sequence": 9,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:02:52.201456Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:02:52.201450Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000007",
+        "name": "Install base packages",
+        "path": "/iac/ansible/playbooks/base/main.yaml:14"
+      }
+    }
+  },
+  {
+    "sequence": 10,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:15.815470Z",
+      "hosts": {
+        "wheatley.local": {
+          "action": "ansible.builtin.package",
+          "changed": false,
+          "msg": "All items completed",
+          "results": [
+            {
+              "_ansible_item_label": "apt-transport-https",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "apt-transport-https",
+                  "only_upgrade": false,
+                  "package": [
+                    "apt-transport-https"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "apt-transport-https"
+            },
+            {
+              "_ansible_item_label": "build-essential",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "build-essential",
+                  "only_upgrade": false,
+                  "package": [
+                    "build-essential"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "build-essential"
+            },
+            {
+              "_ansible_item_label": "ca-certificates",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "ca-certificates",
+                  "only_upgrade": false,
+                  "package": [
+                    "ca-certificates"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "ca-certificates"
+            },
+            {
+              "_ansible_item_label": "curl",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "curl",
+                  "only_upgrade": false,
+                  "package": [
+                    "curl"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "curl"
+            },
+            {
+              "_ansible_item_label": "git",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "git",
+                  "only_upgrade": false,
+                  "package": [
+                    "git"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "git"
+            },
+            {
+              "_ansible_item_label": "gnupg",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "gnupg",
+                  "only_upgrade": false,
+                  "package": [
+                    "gnupg"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "gnupg"
+            },
+            {
+              "_ansible_item_label": "jq",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "jq",
+                  "only_upgrade": false,
+                  "package": [
+                    "jq"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "jq"
+            },
+            {
+              "_ansible_item_label": "nfs-common",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "nfs-common",
+                  "only_upgrade": false,
+                  "package": [
+                    "nfs-common"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "nfs-common"
+            },
+            {
+              "_ansible_item_label": "rsync",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "rsync",
+                  "only_upgrade": false,
+                  "package": [
+                    "rsync"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "rsync"
+            },
+            {
+              "_ansible_item_label": "samba",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "samba",
+                  "only_upgrade": false,
+                  "package": [
+                    "samba"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "samba"
+            },
+            {
+              "_ansible_item_label": "software-properties-common",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730281095,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "software-properties-common",
+                  "only_upgrade": false,
+                  "package": [
+                    "software-properties-common"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "software-properties-common"
+            }
+          ]
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:15.815397Z",
+          "start": "2024-11-02T09:02:52.201450Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000007",
+        "name": "Install base packages",
+        "path": "/iac/ansible/playbooks/base/main.yaml:14"
+      }
+    }
+  },
+  {
+    "sequence": 11,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:27.880161Z",
+      "hosts": {
+        "gman.local": {
+          "action": "ansible.builtin.package",
+          "changed": false,
+          "msg": "All items completed",
+          "results": [
+            {
+              "_ansible_item_label": "apt-transport-https",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "apt-transport-https",
+                  "only_upgrade": false,
+                  "package": [
+                    "apt-transport-https"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "apt-transport-https"
+            },
+            {
+              "_ansible_item_label": "build-essential",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "build-essential",
+                  "only_upgrade": false,
+                  "package": [
+                    "build-essential"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "build-essential"
+            },
+            {
+              "_ansible_item_label": "ca-certificates",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "ca-certificates",
+                  "only_upgrade": false,
+                  "package": [
+                    "ca-certificates"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "ca-certificates"
+            },
+            {
+              "_ansible_item_label": "curl",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "curl",
+                  "only_upgrade": false,
+                  "package": [
+                    "curl"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "curl"
+            },
+            {
+              "_ansible_item_label": "git",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "git",
+                  "only_upgrade": false,
+                  "package": [
+                    "git"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "git"
+            },
+            {
+              "_ansible_item_label": "gnupg",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "gnupg",
+                  "only_upgrade": false,
+                  "package": [
+                    "gnupg"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "gnupg"
+            },
+            {
+              "_ansible_item_label": "jq",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "jq",
+                  "only_upgrade": false,
+                  "package": [
+                    "jq"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "jq"
+            },
+            {
+              "_ansible_item_label": "nfs-common",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "nfs-common",
+                  "only_upgrade": false,
+                  "package": [
+                    "nfs-common"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "nfs-common"
+            },
+            {
+              "_ansible_item_label": "rsync",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "rsync",
+                  "only_upgrade": false,
+                  "package": [
+                    "rsync"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "rsync"
+            },
+            {
+              "_ansible_item_label": "samba",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "samba",
+                  "only_upgrade": false,
+                  "package": [
+                    "samba"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "samba"
+            },
+            {
+              "_ansible_item_label": "software-properties-common",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1719909415,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "software-properties-common",
+                  "only_upgrade": false,
+                  "package": [
+                    "software-properties-common"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "software-properties-common"
+            }
+          ]
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:27.880064Z",
+          "start": "2024-11-02T09:02:52.201450Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000007",
+        "name": "Install base packages",
+        "path": "/iac/ansible/playbooks/base/main.yaml:14"
+      }
+    }
+  },
+  {
+    "sequence": 12,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:32.799720Z",
+      "hosts": {
+        "glados.local": {
+          "action": "ansible.builtin.package",
+          "changed": false,
+          "msg": "All items completed",
+          "results": [
+            {
+              "_ansible_item_label": "apt-transport-https",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "apt-transport-https",
+                  "only_upgrade": false,
+                  "package": [
+                    "apt-transport-https"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "apt-transport-https"
+            },
+            {
+              "_ansible_item_label": "build-essential",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "build-essential",
+                  "only_upgrade": false,
+                  "package": [
+                    "build-essential"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "build-essential"
+            },
+            {
+              "_ansible_item_label": "ca-certificates",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "ca-certificates",
+                  "only_upgrade": false,
+                  "package": [
+                    "ca-certificates"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "ca-certificates"
+            },
+            {
+              "_ansible_item_label": "curl",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "curl",
+                  "only_upgrade": false,
+                  "package": [
+                    "curl"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "curl"
+            },
+            {
+              "_ansible_item_label": "git",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "git",
+                  "only_upgrade": false,
+                  "package": [
+                    "git"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "git"
+            },
+            {
+              "_ansible_item_label": "gnupg",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "gnupg",
+                  "only_upgrade": false,
+                  "package": [
+                    "gnupg"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "gnupg"
+            },
+            {
+              "_ansible_item_label": "jq",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "jq",
+                  "only_upgrade": false,
+                  "package": [
+                    "jq"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "jq"
+            },
+            {
+              "_ansible_item_label": "nfs-common",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "nfs-common",
+                  "only_upgrade": false,
+                  "package": [
+                    "nfs-common"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "nfs-common"
+            },
+            {
+              "_ansible_item_label": "rsync",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "rsync",
+                  "only_upgrade": false,
+                  "package": [
+                    "rsync"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "rsync"
+            },
+            {
+              "_ansible_item_label": "samba",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "samba",
+                  "only_upgrade": false,
+                  "package": [
+                    "samba"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "samba"
+            },
+            {
+              "_ansible_item_label": "software-properties-common",
+              "_ansible_no_log": false,
+              "ansible_loop_var": "item",
+              "cache_update_time": 1730528942,
+              "cache_updated": false,
+              "changed": false,
+              "failed": false,
+              "invocation": {
+                "module_args": {
+                  "allow_change_held_packages": false,
+                  "allow_downgrade": false,
+                  "allow_unauthenticated": false,
+                  "autoclean": false,
+                  "autoremove": false,
+                  "cache_valid_time": 0,
+                  "clean": false,
+                  "deb": null,
+                  "default_release": null,
+                  "dpkg_options": "force-confdef,force-confold",
+                  "fail_on_autoremove": false,
+                  "force": false,
+                  "force_apt_get": false,
+                  "install_recommends": null,
+                  "lock_timeout": 60,
+                  "name": "software-properties-common",
+                  "only_upgrade": false,
+                  "package": [
+                    "software-properties-common"
+                  ],
+                  "policy_rc_d": null,
+                  "purge": false,
+                  "state": "present",
+                  "update_cache": null,
+                  "update_cache_retries": 5,
+                  "update_cache_retry_max_delay": 12,
+                  "upgrade": null
+                }
+              },
+              "item": "software-properties-common"
+            }
+          ]
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:32.799660Z",
+          "start": "2024-11-02T09:02:52.201450Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000007",
+        "name": "Install base packages",
+        "path": "/iac/ansible/playbooks/base/main.yaml:14"
+      }
+    }
+  },
+  {
+    "sequence": 13,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:03:32.809943Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:03:32.809923Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-00000000000e",
+        "name": "zerotier-client : Add ZeroTier GPG apt key",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:2"
+      }
+    }
+  },
+  {
+    "sequence": 14,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:36.059523Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt_key",
+          "before": [
+            "1657198823E52A61",
+            "5A4011580999FBE0",
+            "B7C5D7D6350947F8",
+            "6ED0E7B82643E131",
+            "254CF3B5AEC0A8F0",
+            "BDE6D2B9216EC7A8",
+            "F8D2585B8783D481",
+            "73A4F27B8DD47936",
+            "0E98404D386FA1D9",
+            "A48449044AAD5C5D",
+            "54404762BBB6E853",
+            "605C66F00D6C9793",
+            "DC30D7C23CBBABEE",
+            "648ACFD622F3D138",
+            "4DFAB270CAA96DFA",
+            "112695A0E562B32A",
+            "DCC9EFBF77E11517"
+          ],
+          "changed": false,
+          "fp": "1657198823E52A61",
+          "id": "1657198823E52A61",
+          "invocation": {
+            "module_args": {
+              "data": null,
+              "file": null,
+              "id": null,
+              "keyring": null,
+              "keyserver": null,
+              "state": "present",
+              "url": "https://download.zerotier.com/contact@zerotier.com.gpg",
+              "validate_certs": true
+            }
+          },
+          "key_id": "1657198823E52A61",
+          "short_id": "23E52A61"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:36.059473Z",
+          "start": "2024-11-02T09:03:32.809923Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-00000000000e",
+        "name": "zerotier-client : Add ZeroTier GPG apt key",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:2"
+      }
+    }
+  },
+  {
+    "sequence": 15,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:36.278949Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt_key",
+          "before": [
+            "D94AA3F0EFE21092",
+            "871920D1991BC93C",
+            "1657198823E52A61",
+            "5A4011580999FBE0"
+          ],
+          "changed": false,
+          "fp": "1657198823E52A61",
+          "id": "1657198823E52A61",
+          "invocation": {
+            "module_args": {
+              "data": null,
+              "file": null,
+              "id": null,
+              "keyring": null,
+              "keyserver": null,
+              "state": "present",
+              "url": "https://download.zerotier.com/contact@zerotier.com.gpg",
+              "validate_certs": true
+            }
+          },
+          "key_id": "1657198823E52A61",
+          "short_id": "23E52A61"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:36.278851Z",
+          "start": "2024-11-02T09:03:32.809923Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-00000000000e",
+        "name": "zerotier-client : Add ZeroTier GPG apt key",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:2"
+      }
+    }
+  },
+  {
+    "sequence": 16,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:36.637387Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt_key",
+          "before": [
+            "8D81803C0EBFCD88",
+            "7EA0A9C3F273FCD8",
+            "B7C5D7D6350947F8",
+            "6ED0E7B82643E131",
+            "254CF3B5AEC0A8F0",
+            "BDE6D2B9216EC7A8",
+            "F8D2585B8783D481",
+            "73A4F27B8DD47936",
+            "0E98404D386FA1D9",
+            "A48449044AAD5C5D",
+            "54404762BBB6E853",
+            "605C66F00D6C9793",
+            "DC30D7C23CBBABEE",
+            "648ACFD622F3D138",
+            "4DFAB270CAA96DFA",
+            "112695A0E562B32A",
+            "DCC9EFBF77E11517",
+            "1657198823E52A61",
+            "5A4011580999FBE0"
+          ],
+          "changed": false,
+          "fp": "1657198823E52A61",
+          "id": "1657198823E52A61",
+          "invocation": {
+            "module_args": {
+              "data": null,
+              "file": null,
+              "id": null,
+              "keyring": null,
+              "keyserver": null,
+              "state": "present",
+              "url": "https://download.zerotier.com/contact@zerotier.com.gpg",
+              "validate_certs": true
+            }
+          },
+          "key_id": "1657198823E52A61",
+          "short_id": "23E52A61"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:36.637338Z",
+          "start": "2024-11-02T09:03:32.809923Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-00000000000e",
+        "name": "zerotier-client : Add ZeroTier GPG apt key",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:2"
+      }
+    }
+  },
+  {
+    "sequence": 17,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:03:36.648683Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:03:36.648653Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-00000000000f",
+        "name": "zerotier-client : Add ZeroTier repository",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:7"
+      }
+    }
+  },
+  {
+    "sequence": 18,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:38.809644Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt_repository",
+          "changed": false,
+          "diff": [],
+          "invocation": {
+            "module_args": {
+              "codename": null,
+              "filename": null,
+              "install_python_apt": true,
+              "mode": null,
+              "repo": "deb http://download.zerotier.com/debian/bookworm bookworm main",
+              "state": "present",
+              "update_cache": true,
+              "update_cache_retries": 5,
+              "update_cache_retry_max_delay": 12,
+              "validate_certs": true
+            }
+          },
+          "repo": "deb http://download.zerotier.com/debian/bookworm bookworm main",
+          "sources_added": [],
+          "sources_removed": [],
+          "state": "present"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:38.809553Z",
+          "start": "2024-11-02T09:03:36.648653Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-00000000000f",
+        "name": "zerotier-client : Add ZeroTier repository",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:7"
+      }
+    }
+  },
+  {
+    "sequence": 19,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:38.903346Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt_repository",
+          "changed": false,
+          "diff": [],
+          "invocation": {
+            "module_args": {
+              "codename": null,
+              "filename": null,
+              "install_python_apt": true,
+              "mode": null,
+              "repo": "deb http://download.zerotier.com/debian/bookworm bookworm main",
+              "state": "present",
+              "update_cache": true,
+              "update_cache_retries": 5,
+              "update_cache_retry_max_delay": 12,
+              "validate_certs": true
+            }
+          },
+          "repo": "deb http://download.zerotier.com/debian/bookworm bookworm main",
+          "sources_added": [],
+          "sources_removed": [],
+          "state": "present"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:38.903314Z",
+          "start": "2024-11-02T09:03:36.648653Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-00000000000f",
+        "name": "zerotier-client : Add ZeroTier repository",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:7"
+      }
+    }
+  },
+  {
+    "sequence": 20,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:39.805686Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt_repository",
+          "changed": false,
+          "diff": [],
+          "invocation": {
+            "module_args": {
+              "codename": null,
+              "filename": null,
+              "install_python_apt": true,
+              "mode": null,
+              "repo": "deb http://download.zerotier.com/debian/jammy jammy main",
+              "state": "present",
+              "update_cache": true,
+              "update_cache_retries": 5,
+              "update_cache_retry_max_delay": 12,
+              "validate_certs": true
+            }
+          },
+          "repo": "deb http://download.zerotier.com/debian/jammy jammy main",
+          "sources_added": [],
+          "sources_removed": [],
+          "state": "present"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:39.805591Z",
+          "start": "2024-11-02T09:03:36.648653Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-00000000000f",
+        "name": "zerotier-client : Add ZeroTier repository",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:7"
+      }
+    }
+  },
+  {
+    "sequence": 21,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:03:39.818279Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:03:39.818254Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000010",
+        "name": "zerotier-client : Install zerotier-one",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:17"
+      }
+    }
+  },
+  {
+    "sequence": 22,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:41.927963Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt",
+          "cache_update_time": 1730281095,
+          "cache_updated": false,
+          "changed": false,
+          "invocation": {
+            "module_args": {
+              "allow_change_held_packages": false,
+              "allow_downgrade": false,
+              "allow_unauthenticated": false,
+              "autoclean": false,
+              "autoremove": false,
+              "cache_valid_time": 0,
+              "clean": false,
+              "deb": null,
+              "default_release": null,
+              "dpkg_options": "force-confdef,force-confold",
+              "fail_on_autoremove": false,
+              "force": false,
+              "force_apt_get": false,
+              "install_recommends": null,
+              "lock_timeout": 60,
+              "name": "zerotier-one",
+              "only_upgrade": false,
+              "package": [
+                "zerotier-one"
+              ],
+              "policy_rc_d": null,
+              "purge": false,
+              "state": "present",
+              "update_cache": null,
+              "update_cache_retries": 5,
+              "update_cache_retry_max_delay": 12,
+              "upgrade": null
+            }
+          }
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:41.927901Z",
+          "start": "2024-11-02T09:03:39.818254Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000010",
+        "name": "zerotier-client : Install zerotier-one",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:17"
+      }
+    }
+  },
+  {
+    "sequence": 23,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:43.373603Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt",
+          "cache_update_time": 1719909415,
+          "cache_updated": false,
+          "changed": false,
+          "invocation": {
+            "module_args": {
+              "allow_change_held_packages": false,
+              "allow_downgrade": false,
+              "allow_unauthenticated": false,
+              "autoclean": false,
+              "autoremove": false,
+              "cache_valid_time": 0,
+              "clean": false,
+              "deb": null,
+              "default_release": null,
+              "dpkg_options": "force-confdef,force-confold",
+              "fail_on_autoremove": false,
+              "force": false,
+              "force_apt_get": false,
+              "install_recommends": null,
+              "lock_timeout": 60,
+              "name": "zerotier-one",
+              "only_upgrade": false,
+              "package": [
+                "zerotier-one"
+              ],
+              "policy_rc_d": null,
+              "purge": false,
+              "state": "present",
+              "update_cache": null,
+              "update_cache_retries": 5,
+              "update_cache_retry_max_delay": 12,
+              "upgrade": null
+            }
+          }
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:43.373549Z",
+          "start": "2024-11-02T09:03:39.818254Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000010",
+        "name": "zerotier-client : Install zerotier-one",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:17"
+      }
+    }
+  },
+  {
+    "sequence": 24,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:43.453172Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.apt",
+          "cache_update_time": 1730528942,
+          "cache_updated": false,
+          "changed": false,
+          "invocation": {
+            "module_args": {
+              "allow_change_held_packages": false,
+              "allow_downgrade": false,
+              "allow_unauthenticated": false,
+              "autoclean": false,
+              "autoremove": false,
+              "cache_valid_time": 0,
+              "clean": false,
+              "deb": null,
+              "default_release": null,
+              "dpkg_options": "force-confdef,force-confold",
+              "fail_on_autoremove": false,
+              "force": false,
+              "force_apt_get": false,
+              "install_recommends": null,
+              "lock_timeout": 60,
+              "name": "zerotier-one",
+              "only_upgrade": false,
+              "package": [
+                "zerotier-one"
+              ],
+              "policy_rc_d": null,
+              "purge": false,
+              "state": "present",
+              "update_cache": null,
+              "update_cache_retries": 5,
+              "update_cache_retry_max_delay": 12,
+              "upgrade": null
+            }
+          }
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:43.453145Z",
+          "start": "2024-11-02T09:03:39.818254Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000010",
+        "name": "zerotier-client : Install zerotier-one",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:17"
+      }
+    }
+  },
+  {
+    "sequence": 25,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:03:43.457799Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:03:43.457791Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000011",
+        "name": "zerotier-client : Start zerotier-one",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:22"
+      }
+    }
+  },
+  {
+    "sequence": 26,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:45.360230Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.systemd",
+          "changed": false,
+          "enabled": true,
+          "invocation": {
+            "module_args": {
+              "daemon_reexec": false,
+              "daemon_reload": false,
+              "enabled": true,
+              "force": null,
+              "masked": null,
+              "name": "zerotier-one",
+              "no_block": false,
+              "scope": "system",
+              "state": "started"
+            }
+          },
+          "name": "zerotier-one",
+          "state": "started",
+          "status": "omitted"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:45.360176Z",
+          "start": "2024-11-02T09:03:43.457791Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000011",
+        "name": "zerotier-client : Start zerotier-one",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:22"
+      }
+    }
+  },
+  {
+    "sequence": 27,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:46.253859Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.systemd",
+          "changed": false,
+          "enabled": true,
+          "invocation": {
+            "module_args": {
+              "daemon_reexec": false,
+              "daemon_reload": false,
+              "enabled": true,
+              "force": null,
+              "masked": null,
+              "name": "zerotier-one",
+              "no_block": false,
+              "scope": "system",
+              "state": "started"
+            }
+          },
+          "name": "zerotier-one",
+          "state": "started",
+          "status": "omitted"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:46.253813Z",
+          "start": "2024-11-02T09:03:43.457791Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000011",
+        "name": "zerotier-client : Start zerotier-one",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:22"
+      }
+    }
+  },
+  {
+    "sequence": 28,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:46.756817Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.systemd",
+          "changed": false,
+          "enabled": true,
+          "invocation": {
+            "module_args": {
+              "daemon_reexec": false,
+              "daemon_reload": false,
+              "enabled": true,
+              "force": null,
+              "masked": null,
+              "name": "zerotier-one",
+              "no_block": false,
+              "scope": "system",
+              "state": "started"
+            }
+          },
+          "name": "zerotier-one",
+          "state": "started",
+          "status": "omitted"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:46.756724Z",
+          "start": "2024-11-02T09:03:43.457791Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000011",
+        "name": "zerotier-client : Start zerotier-one",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:22"
+      }
+    }
+  },
+  {
+    "sequence": 29,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:03:46.767342Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:03:46.767316Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000012",
+        "name": "zerotier-client : Join ZeroTier network",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:28"
+      }
+    }
+  },
+  {
+    "sequence": 30,
+    "contents": {
+      "_event": "v2_runner_on_skipped",
+      "_timestamp": "2024-11-02T09:03:46.789347Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.command",
+          "changed": false,
+          "false_condition": "network_id is defined and network_id != \"\"",
+          "skip_reason": "Conditional result was False",
+          "skipped": true
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:46.789310Z",
+          "start": "2024-11-02T09:03:46.767316Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000012",
+        "name": "zerotier-client : Join ZeroTier network",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:28"
+      }
+    }
+  },
+  {
+    "sequence": 31,
+    "contents": {
+      "_event": "v2_runner_on_skipped",
+      "_timestamp": "2024-11-02T09:03:46.789520Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.command",
+          "changed": false,
+          "false_condition": "network_id is defined and network_id != \"\"",
+          "skip_reason": "Conditional result was False",
+          "skipped": true
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:46.789508Z",
+          "start": "2024-11-02T09:03:46.767316Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000012",
+        "name": "zerotier-client : Join ZeroTier network",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:28"
+      }
+    }
+  },
+  {
+    "sequence": 32,
+    "contents": {
+      "_event": "v2_runner_on_skipped",
+      "_timestamp": "2024-11-02T09:03:46.793375Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.command",
+          "changed": false,
+          "false_condition": "network_id is defined and network_id != \"\"",
+          "skip_reason": "Conditional result was False",
+          "skipped": true
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:46.793362Z",
+          "start": "2024-11-02T09:03:46.767316Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000012",
+        "name": "zerotier-client : Join ZeroTier network",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:28"
+      }
+    }
+  },
+  {
+    "sequence": 33,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:03:46.797297Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:03:46.797293Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000013",
+        "name": "zerotier-client : Read ZeroTier client identity",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:34"
+      }
+    }
+  },
+  {
+    "sequence": 34,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:48.496875Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.slurp",
+          "changed": false,
+          "content": "omitted",
+          "encoding": "base64",
+          "invocation": {
+            "module_args": {
+              "path": "/var/lib/zerotier-one/identity.public",
+              "src": "/var/lib/zerotier-one/identity.public"
+            }
+          },
+          "source": "/var/lib/zerotier-one/identity.public"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:48.496781Z",
+          "start": "2024-11-02T09:03:46.797293Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000013",
+        "name": "zerotier-client : Read ZeroTier client identity",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:34"
+      }
+    }
+  },
+  {
+    "sequence": 35,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:49.020706Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.slurp",
+          "changed": false,
+          "content": "omitted",
+          "encoding": "base64",
+          "invocation": {
+            "module_args": {
+              "path": "/var/lib/zerotier-one/identity.public",
+              "src": "/var/lib/zerotier-one/identity.public"
+            }
+          },
+          "source": "/var/lib/zerotier-one/identity.public"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:49.020676Z",
+          "start": "2024-11-02T09:03:46.797293Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000013",
+        "name": "zerotier-client : Read ZeroTier client identity",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:34"
+      }
+    }
+  },
+  {
+    "sequence": 36,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:50.335684Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "action": "ansible.builtin.slurp",
+          "changed": false,
+          "content": "omitted",
+          "encoding": "base64",
+          "invocation": {
+            "module_args": {
+              "path": "/var/lib/zerotier-one/identity.public",
+              "src": "/var/lib/zerotier-one/identity.public"
+            }
+          },
+          "source": "/var/lib/zerotier-one/identity.public"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:50.335622Z",
+          "start": "2024-11-02T09:03:46.797293Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000013",
+        "name": "zerotier-client : Read ZeroTier client identity",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:34"
+      }
+    }
+  },
+  {
+    "sequence": 37,
+    "contents": {
+      "_event": "v2_playbook_on_task_start",
+      "_timestamp": "2024-11-02T09:03:50.343978Z",
+      "hosts": {},
+      "task": {
+        "duration": {
+          "start": "2024-11-02T09:03:50.343963Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000014",
+        "name": "zerotier-client : Output ZeroTier client identity",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:39"
+      }
+    }
+  },
+  {
+    "sequence": 38,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:50.544278Z",
+      "hosts": {
+        "gman.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_always": true,
+          "action": "ansible.builtin.debug",
+          "changed": false,
+          "msg": "d8f15af653"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:50.544235Z",
+          "start": "2024-11-02T09:03:50.343963Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000014",
+        "name": "zerotier-client : Output ZeroTier client identity",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:39"
+      }
+    }
+  },
+  {
+    "sequence": 39,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:50.544598Z",
+      "hosts": {
+        "wheatley.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_always": true,
+          "action": "ansible.builtin.debug",
+          "changed": false,
+          "msg": "0e5a4e81e7"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:50.544587Z",
+          "start": "2024-11-02T09:03:50.343963Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000014",
+        "name": "zerotier-client : Output ZeroTier client identity",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:39"
+      }
+    }
+  },
+  {
+    "sequence": 40,
+    "contents": {
+      "_event": "v2_runner_on_ok",
+      "_timestamp": "2024-11-02T09:03:50.544680Z",
+      "hosts": {
+        "glados.local": {
+          "_ansible_no_log": false,
+          "_ansible_verbose_always": true,
+          "action": "ansible.builtin.debug",
+          "changed": false,
+          "msg": "d6475fe97d"
+        }
+      },
+      "task": {
+        "duration": {
+          "end": "2024-11-02T09:03:50.544670Z",
+          "start": "2024-11-02T09:03:50.343963Z"
+        },
+        "id": "0691f17f-5892-5ccd-cc9d-000000000014",
+        "name": "zerotier-client : Output ZeroTier client identity",
+        "path": "/iac/ansible/roles/zerotier-client/tasks/main.yaml:39"
+      }
+    }
+  },
+  {
+    "sequence": 41,
+    "contents": {
+      "_event": "v2_playbook_on_stats",
+      "_timestamp": "2024-11-02T09:03:50.575634Z",
+      "custom_stats": {},
+      "global_custom_stats": {},
+      "stats": {
+        "glados.local": {
+          "changed": 0,
+          "failures": 0,
+          "ignored": 0,
+          "ok": 9,
+          "rescued": 0,
+          "skipped": 1,
+          "unreachable": 0
+        },
+        "gman.local": {
+          "changed": 0,
+          "failures": 0,
+          "ignored": 0,
+          "ok": 9,
+          "rescued": 0,
+          "skipped": 1,
+          "unreachable": 0
+        },
+        "wheatley.local": {
+          "changed": 0,
+          "failures": 0,
+          "ignored": 0,
+          "ok": 9,
+          "rescued": 0,
+          "skipped": 1,
+          "unreachable": 0
+        }
+      }
+    }
+  }
+]

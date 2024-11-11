@@ -1,13 +1,19 @@
-import { playbooks } from '../src/database';
+import { playbookRunLogs, playbookRuns, playbooks } from '../src/database';
 import { DatabaseConfig } from '../src/database/database.config';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import { PostgresContainer } from './containers';
+import { PostgresContainer } from './postgres-container';
 import { drizzle } from 'drizzle-orm/node-postgres';
+import { eq } from 'drizzle-orm';
 import { Logger } from '../src/logger';
 import { randomUUID } from 'crypto';
 import { Client } from 'pg';
 import * as schema from '../src/database/schema';
+import playbookRunLogsFixture from './fixtures/playbook-run-logs.json';
 import { resolve } from 'path';
+import {
+  nextPlaybookRunStatus,
+  PlaybookRunStatus,
+} from '@shrodinger/contracts';
 
 export type DatabaseHelpers = Awaited<ReturnType<typeof createDatabaseHelpers>>;
 
@@ -56,7 +62,6 @@ export const createDatabaseHelpers = async () => {
       },
       cleanup: async () => {
         await db.$client.end();
-        // await client.query(`DROP DATABASE ${databaseName}`);
         await client.end();
       },
     },
@@ -68,12 +73,55 @@ export const createDatabaseHelpers = async () => {
           .map((_, i) => ({
             playbookId: i + 1,
             filepath: `playbook-${i + 1}.yaml`,
-            contents: { name: `Playbook ${i + 1}` },
           }));
 
         const data = await db.insert(playbooks).values(attributes).returning();
 
         return { attributes, data };
+      },
+    },
+
+    playbookRuns: {
+      create: async (playbookId: number, playbookVersion: number) => {
+        const data = await db
+          .insert(playbookRuns)
+          .values({ playbookId, playbookVersion })
+          .returning();
+
+        return data;
+      },
+
+      setStatus: async (playbookRunId: number, status?: PlaybookRunStatus) => {
+        const [current] = await db
+          .select()
+          .from(playbookRuns)
+          .where(eq(playbookRuns.playbookRunId, playbookRunId));
+
+        const nextStatus = status ?? nextPlaybookRunStatus[current.status];
+
+        const data = await db
+          .update(playbookRuns)
+          .set({ status: nextStatus })
+          .where(eq(playbookRuns.playbookRunId, playbookRunId))
+          .returning();
+
+        return data;
+      },
+    },
+
+    playbookRunLogs: {
+      seed: async (playbookRunId: number) => {
+        const values = playbookRunLogsFixture.map((log) => ({
+          playbookRunId,
+          ...log,
+        }));
+
+        const data = await db
+          .insert(playbookRunLogs)
+          .values(values)
+          .returning();
+
+        return data;
       },
     },
   };

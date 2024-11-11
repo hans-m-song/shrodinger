@@ -29,6 +29,7 @@ module.exports = {
         require('./apps/api/tsconfig.json').compilerOptions.paths,
         { prefix: '<rootDir>' },
       ),
+      setupFiles: ['<rootDir>/test/setup.ts'],
       ...jsWithBabel,
     },
     {
