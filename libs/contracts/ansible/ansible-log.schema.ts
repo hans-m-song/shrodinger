@@ -65,34 +65,45 @@ export type AnsiblePlaybookTaskStartLog = z.infer<
   typeof AnsiblePlaybookTaskStartLogSchema
 >;
 
-export const AnsibleRunnerTaskHostSchema = z.object({
-  action: z.string(),
-  changed: z.boolean(),
-  deprecations: z.string().array().optional(),
-  warnings: z.string().array().optional(),
-});
+export const AnsibleRunnerTaskOkHostSchema = z
+  .object({
+    action: z.string(),
+    changed: z.boolean(),
+    deprecations: z.string().array().optional(),
+    warnings: z.string().array().optional(),
+  })
+  .passthrough();
+
+export type AnsibleRunnerTaskOkHost = z.infer<
+  typeof AnsibleRunnerTaskOkHostSchema
+>;
 
 export const AnsibleRunnerOkLogSchema = z.object({
   _timestamp: ISOTimestampSchema,
   _event: z.literal(AnsibleLogEvent.RunnerOk),
   task: AnsibleTaskSchema,
-  hosts: z.record(z.string(), AnsibleRunnerTaskHostSchema),
+  hosts: z.record(z.string(), AnsibleRunnerTaskOkHostSchema),
 });
 
 export type AnsibleRunnerOkLog = z.infer<typeof AnsibleRunnerOkLogSchema>;
+
+export const AnsibleRunnerTaskSkippedHostSchema = z
+  .object({
+    false_condition: z.string(),
+    skip_reason: z.string(),
+    skipped: z.boolean(),
+  })
+  .merge(AnsibleRunnerTaskOkHostSchema);
+
+export type AnsibleRunnerTaskSkippedHost = z.infer<
+  typeof AnsibleRunnerTaskSkippedHostSchema
+>;
 
 export const AnsibleRunnerSkippedLogSchema = z.object({
   _timestamp: ISOTimestampSchema,
   _event: z.literal(AnsibleLogEvent.RunnerSkipped),
   task: AnsibleTaskSchema,
-  hosts: z.record(
-    z.string(),
-    AnsibleRunnerTaskHostSchema.extend({
-      false_condition: z.string(),
-      skip_reason: z.string(),
-      skipped: z.boolean(),
-    }),
-  ),
+  hosts: z.record(z.string(), AnsibleRunnerTaskOkHostSchema),
 });
 
 export type AnsibleRunnerSkippedLog = z.infer<
@@ -118,6 +129,10 @@ export const AnsiblePlaybookStatsLogSchema = z.object({
   _event: z.literal(AnsibleLogEvent.PlaybookStats),
   stats: z.record(z.string(), AnsiblePlaybookStatsSchema),
 });
+
+export type AnsiblePlaybookStatsLog = z.infer<
+  typeof AnsiblePlaybookStatsLogSchema
+>;
 
 export const AnsibleLogSchema = z.discriminatedUnion('_event', [
   AnsiblePlaybookPlayStartLogSchema,

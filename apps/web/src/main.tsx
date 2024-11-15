@@ -1,14 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from './App.tsx';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { ThemeProvider } from '@emotion/react';
-import theme from './theme.ts';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ThemeProvider } from './theme.tsx';
+import { createRouter, RouterProvider } from '@tanstack/react-router';
+import { routeTree } from './routeTree.gen.ts';
+import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import { QueryClientProvider } from './lib/api-provider.tsx';
 
 const apiUri = import.meta.env.VITE_API_URI;
-console.log(import.meta.env.VITE_GIT_SHA);
+if (import.meta.env.DEV) {
+  console.log(import.meta.env);
+}
 
-const client = new ApolloClient({ uri: apiUri, cache: new InMemoryCache() });
+const client = new ApolloClient({
+  uri: apiUri,
+  cache: new InMemoryCache(),
+});
+
+const router = createRouter({
+  routeTree,
+});
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
 
 const root = document.getElementById('root');
 if (!root) {
@@ -17,10 +35,18 @@ if (!root) {
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
+    <ThemeProvider>
+      <QueryClientProvider>
+        {import.meta.env.DEV && (
+          <ReactQueryDevtools buttonPosition="top-right" />
+        )}
+        {import.meta.env.DEV && (
+          <TanStackRouterDevtools router={router} position="bottom-right" />
+        )}
+        <ApolloProvider client={client}>
+          <RouterProvider router={router} />
+        </ApolloProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   </React.StrictMode>,
 );

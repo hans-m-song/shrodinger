@@ -1,15 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { z } from 'zod';
-
-export const PlaybookSchema = z.object({
-  id: z.string(),
-  filepath: z.string(),
-  contents: z.any(),
-  createdAt: z.number(),
-  updatedAt: z.number(),
-});
-
-export type Playbook = z.infer<typeof PlaybookSchema>;
+import { Playbook } from '@shrodinger/contracts';
 
 export interface useListPlaybooksQueryVariables {
   offset?: number;
@@ -26,9 +16,9 @@ export const useListPlaybooksQuery = (
     gql`
       query ($offset: Int, $limit: Int) {
         playbooks(offset: $offset, limit: $limit) {
-          id
+          playbookId
+          active
           filepath
-          contents
           createdAt
           updatedAt
         }

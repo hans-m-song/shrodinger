@@ -11,8 +11,6 @@ export const PlaybookSchema = z
     playbookId: IDSchema,
     active: z.boolean().default(true),
     filepath: z.string(),
-    createdAt: z.number(),
-    updatedAt: z.number(),
   })
   .merge(ActiveRecordSchema);
 
