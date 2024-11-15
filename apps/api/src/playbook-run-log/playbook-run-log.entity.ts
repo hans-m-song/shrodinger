@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { AnsibleLogBase, PlaybookRunLog } from '@shrodinger/contracts';
+import { AnsibleLog, PlaybookRunLog } from '@shrodinger/contracts';
 import { GraphQLJSON } from 'graphql-scalars';
 import { PlaybookRunLogAttributes } from '../database';
 
@@ -14,5 +14,5 @@ export class PlaybookRunLogEntity
   declare sequence: number;
 
   @Field(() => GraphQLJSON)
-  declare contents: AnsibleLogBase & Record<string, unknown>;
+  declare contents: AnsibleLog & Record<string, unknown>;
 }

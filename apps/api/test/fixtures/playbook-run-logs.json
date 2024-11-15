@@ -1679,27 +1679,27 @@
           "_ansible_no_log": false,
           "action": "ansible.builtin.apt_key",
           "before": [
-            "1657198823E52A61",
-            "5A4011580999FBE0",
-            "B7C5D7D6350947F8",
-            "6ED0E7B82643E131",
-            "254CF3B5AEC0A8F0",
-            "BDE6D2B9216EC7A8",
-            "F8D2585B8783D481",
-            "73A4F27B8DD47936",
-            "0E98404D386FA1D9",
-            "A48449044AAD5C5D",
-            "54404762BBB6E853",
-            "605C66F00D6C9793",
-            "DC30D7C23CBBABEE",
-            "648ACFD622F3D138",
-            "4DFAB270CAA96DFA",
-            "112695A0E562B32A",
-            "DCC9EFBF77E11517"
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef"
           ],
           "changed": false,
-          "fp": "1657198823E52A61",
-          "id": "1657198823E52A61",
+          "fp": "0123456789abcdef",
+          "id": "0123456789abcdef",
           "invocation": {
             "module_args": {
               "data": null,
@@ -1712,8 +1712,8 @@
               "validate_certs": true
             }
           },
-          "key_id": "1657198823E52A61",
-          "short_id": "23E52A61"
+          "key_id": "0123456789abcdef",
+          "short_id": "01234567"
         }
       },
       "task": {
@@ -1737,14 +1737,14 @@
           "_ansible_no_log": false,
           "action": "ansible.builtin.apt_key",
           "before": [
-            "D94AA3F0EFE21092",
-            "871920D1991BC93C",
-            "1657198823E52A61",
-            "5A4011580999FBE0"
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef"
           ],
           "changed": false,
-          "fp": "1657198823E52A61",
-          "id": "1657198823E52A61",
+          "fp": "0123456789abcdef",
+          "id": "0123456789abcdef",
           "invocation": {
             "module_args": {
               "data": null,
@@ -1757,8 +1757,8 @@
               "validate_certs": true
             }
           },
-          "key_id": "1657198823E52A61",
-          "short_id": "23E52A61"
+          "key_id": "0123456789abcdef",
+          "short_id": "01234567"
         }
       },
       "task": {
@@ -1782,29 +1782,29 @@
           "_ansible_no_log": false,
           "action": "ansible.builtin.apt_key",
           "before": [
-            "8D81803C0EBFCD88",
-            "7EA0A9C3F273FCD8",
-            "B7C5D7D6350947F8",
-            "6ED0E7B82643E131",
-            "254CF3B5AEC0A8F0",
-            "BDE6D2B9216EC7A8",
-            "F8D2585B8783D481",
-            "73A4F27B8DD47936",
-            "0E98404D386FA1D9",
-            "A48449044AAD5C5D",
-            "54404762BBB6E853",
-            "605C66F00D6C9793",
-            "DC30D7C23CBBABEE",
-            "648ACFD622F3D138",
-            "4DFAB270CAA96DFA",
-            "112695A0E562B32A",
-            "DCC9EFBF77E11517",
-            "1657198823E52A61",
-            "5A4011580999FBE0"
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef",
+            "0123456789abcdef"
           ],
           "changed": false,
-          "fp": "1657198823E52A61",
-          "id": "1657198823E52A61",
+          "fp": "0123456789abcdef",
+          "id": "0123456789abcdef",
           "invocation": {
             "module_args": {
               "data": null,
@@ -2527,7 +2527,7 @@
           "_ansible_verbose_always": true,
           "action": "ansible.builtin.debug",
           "changed": false,
-          "msg": "d8f15af653"
+          "msg": "0123456789"
         }
       },
       "task": {
@@ -2552,7 +2552,7 @@
           "_ansible_verbose_always": true,
           "action": "ansible.builtin.debug",
           "changed": false,
-          "msg": "0e5a4e81e7"
+          "msg": "0123456789"
         }
       },
       "task": {
@@ -2577,7 +2577,7 @@
           "_ansible_verbose_always": true,
           "action": "ansible.builtin.debug",
           "changed": false,
-          "msg": "d6475fe97d"
+          "msg": "0123456789"
         }
       },
       "task": {

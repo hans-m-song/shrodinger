@@ -18,8 +18,11 @@ export class PlaybookRunController {
   async listPlaybookRuns() {
     return tsRestHandler(
       playbookRunContract.listPlaybookRuns,
-      async ({ query }) => {
-        const result = await this.playbookRunService.listPlaybookRuns(query);
+      async ({ params, query }) => {
+        const result = await this.playbookRunService.listPlaybookRuns({
+          ...params,
+          ...query,
+        });
         if (!result.ok) {
           this.logger.error(result.error);
 

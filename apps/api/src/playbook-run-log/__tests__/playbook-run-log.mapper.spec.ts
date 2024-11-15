@@ -18,7 +18,7 @@ describe('PlaybookRunLogMapper', () => {
       }));
 
       // when
-      const result = mapper.flatten(logs);
+      const result = mapper.flatten(logs as any);
 
       // then
       expect(result).toMatchSnapshot();
